@@ -28,6 +28,13 @@ The passing suite covers:
 
 Final screenshots were visually inspected. The review found and corrected a mobile text-spacing issue where hiding the education-card line break caused “Mater DeiHigh School”; it now renders and reads as “Mater Dei High School.” The resize test was also made deterministic by waiting for the media-query handler before asserting menu visibility.
 
+Committed visual evidence:
+
+- [Desktop dark](screenshots/desktop-dark.png)
+- [Desktop light](screenshots/desktop-light.png)
+- [Mobile dark](screenshots/mobile-dark.png)
+- [Mobile light](screenshots/mobile-light.png)
+
 ## Content boundaries
 
 - Class of 2028, aerospace focus, V4 priority, and ARC competition details are user-confirmed
