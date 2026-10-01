@@ -1,19 +1,32 @@
 # Portfolio refresh QA
 
-## Passed source checks
+## Source checks
 
 - `node --check assets/js/script.js`
 - `node --check tests/browser-check.cjs`
-- `python3 tests/check_site.py`: one main landmark and H1; unique IDs; all 13 links and internal anchor targets; referenced local files; safe new-tab links; no template identity, mistyped GitHub handle, private course-guide reference, or unsupported graduation metadata
+- Previously completed: `python3 tests/check_site.py`: one main landmark and H1; unique IDs; all 13 links and internal anchor targets; referenced local files; safe new-tab links; no template identity, mistyped GitHub handle, private course-guide reference, or unsupported graduation metadata. The final Windows browser-QA environment did not have Python, so this check was not rerun there.
 - `git diff --check`
 - Independent source review of content provenance, semantic structure, menu logic, theme storage fallback, and reduced-motion styles
 - Contrast calculations corrected the primary button background to `#7060df` and light-theme heading gradient endpoint to `#8755a9`
 
-## Browser QA: blocked, not passed
+## Browser QA: passed locally
 
-Desktop/mobile Chromium launch was attempted using Playwright and agent-browser in the cloud environment, including approved execution escalation. The environment denies the Unix-domain socket Chromium requires for its process singleton (`socket() failed: Operation not permitted`). The supported cloud browser also could not open the local preview URL (`ERR_BLOCKED_BY_CLIENT`). No browser screenshot or rendered-layout result was obtained.
+`tests/browser-check.cjs` completed successfully in a local Windows environment using Playwright 1.55.0 with the installed Google Chrome executable. The site was served from the repository root at `http://127.0.0.1:8000`.
 
-`tests/browser-check.cjs` contains the intended executable browser regression suite. It has **not completed** in this environment. It covers desktop/mobile screenshots, 320–1440px overflow checks, navigation, theme persistence, repeated menu interactions, Escape/outside dismissal, keyboard skip link, reduced motion, no-JavaScript access, blocked storage, and the legacy contact redirect. Run it in a browser-capable environment before marking the PR ready.
+The passing suite covers:
+
+- Full-page desktop and mobile screenshots in both dark and light themes, plus mobile open-menu and no-JavaScript captures
+- Horizontal-overflow checks at 320, 390, 768, 1024, and 1440px
+- Theme switching and persistence across reloads
+- Repeated menu open/close cycles, Escape dismissal with focus restoration, outside-click dismissal, section selection, and desktop/mobile resize transitions
+- Native anchor navigation and back/forward history
+- Keyboard skip-link behavior and reduced-motion styles
+- No-JavaScript content/navigation and blocked-`localStorage` resilience
+- Legacy contact redirect
+- Public GitHub profile and Rocket Flight Solver links returning HTTP 200
+- Zero page errors, console errors, or HTTP responses at status 400 or above
+
+Final screenshots were visually inspected. The review found and corrected a mobile text-spacing issue where hiding the education-card line break caused “Mater DeiHigh School”; it now renders and reads as “Mater Dei High School.” The resize test was also made deterministic by waiting for the media-query handler before asserting menu visibility.
 
 ## Content boundaries
 

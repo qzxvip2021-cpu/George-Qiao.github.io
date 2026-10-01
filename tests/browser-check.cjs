@@ -53,6 +53,20 @@ const fs = require("node:fs");
   await page.setViewportSize({ width: 390, height: 844 });
   await page.goto("http://127.0.0.1:8000");
   const menu = page.getByRole("button", { name: "Open navigation menu" });
+  for (let cycle = 0; cycle < 2; cycle += 1) {
+    await menu.click();
+    assert.equal(
+      await page.locator("#menuToggle").getAttribute("aria-expanded"),
+      "true",
+    );
+    await page
+      .getByRole("button", { name: "Close navigation menu" })
+      .click();
+    assert.equal(
+      await page.locator("#menuToggle").getAttribute("aria-expanded"),
+      "false",
+    );
+  }
   await menu.click();
   assert.equal(
     await page.locator("#menuToggle").getAttribute("aria-expanded"),
@@ -91,9 +105,14 @@ const fs = require("node:fs");
   assert.ok(page.url().endsWith("#projects"));
   await page.goto("http://127.0.0.1:8000");
   await page.screenshot({ path: `${out}/mobile-dark.png`, fullPage: true });
+  await page.getByRole("button", { name: "Switch to light theme" }).click();
+  await page.screenshot({ path: `${out}/mobile-light.png`, fullPage: true });
+  await page.getByRole("button", { name: "Switch to dark theme" }).click();
   await page.setViewportSize({ width: 1440, height: 1000 });
+  await page.waitForFunction(() => !document.querySelector("#navMenu").hidden);
   assert.equal(await page.locator("#navMenu").isVisible(), true);
   await page.setViewportSize({ width: 390, height: 844 });
+  await page.waitForFunction(() => document.querySelector("#navMenu").hidden);
   assert.equal(await page.locator("#navMenu").isVisible(), false);
   await page.goto("http://127.0.0.1:8000");
   await page.keyboard.press("Tab");
