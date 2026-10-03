@@ -89,6 +89,13 @@ svg {
   display: block;
   max-width: 100%;
 }
+.direction-icon {
+  display: inline-block;
+  width: 1em;
+  height: 1em;
+  flex: none;
+  vertical-align: -0.125em;
+}
 .container {
   width: min(1120px, calc(100% - 80px));
   margin-inline: auto;
@@ -861,15 +868,20 @@ h3 {
   opacity: 0.8;
 }
 .arc-orbit:before {
-  content: "↗";
+  content: "";
   position: absolute;
   inset: 15px;
   border: 1px solid var(--accent);
   border-radius: 50%;
-  font: 60px sans-serif;
+}
+.arc-arrow {
+  position: absolute;
+  width: 60px;
+  height: 60px;
+  left: 50%;
+  top: 50%;
   color: var(--accent);
-  display: grid;
-  place-items: center;
+  transform: translate(-50%, -50%);
 }
 .arc-orbit:after {
   content: "";
