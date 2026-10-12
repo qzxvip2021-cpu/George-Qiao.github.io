@@ -63,7 +63,9 @@
     const link = event.target.closest("a");
     if (!link) return;
     setMenu(false);
-    const target = document.querySelector(link.getAttribute("href"));
+    const href = link.getAttribute("href") || "";
+    if (!href.startsWith("#") || href.length === 1) return;
+    const target = document.getElementById(href.slice(1));
     if (target) {
       target.setAttribute("tabindex", "-1");
       target.focus({ preventScroll: true });
