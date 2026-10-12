@@ -1,0 +1,411 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="color-scheme" content="dark light" />
+    <meta name="robots" content="noindex, nofollow" />
+    <meta name="theme-color" content="#101117" />
+    <title>V4 Flight Computer Case Study | George Qiao</title>
+    <meta
+      name="description"
+      content="An evidence-scoped technical case study of the V4 Flight Computer hardware design and manufacturing preparation."
+    />
+    <link rel="icon" type="image/svg+xml" href="../../assets/ele/favicon.svg" />
+    <link rel="stylesheet" href="../../assets/css/style.css" />
+    <link rel="stylesheet" href="../../assets/css/case-study.css" />
+    <link rel="stylesheet" href="../../assets/css/v4-case-study.css" />
+    <script src="../../assets/js/script.js" defer></script>
+  </head>
+  <body>
+    <a class="skip-link" href="#main-content">Skip to content</a>
+    <header class="site-header">
+      <nav class="nav container" aria-label="Main navigation">
+        <a
+          class="brand"
+          href="../../index.html#home"
+          aria-label="George Qiao, home"
+        >
+          <span class="monogram" aria-hidden="true">GQ<span>·</span></span>
+          <span class="brand-name">George Qiao</span>
+        </a>
+        <div class="nav-actions">
+          <button
+            class="theme-toggle"
+            id="themeToggle"
+            type="button"
+            aria-label="Switch to light theme"
+            hidden
+          ><span aria-hidden="true">◐</span></button>
+          <button
+            class="menu-toggle"
+            id="menuToggle"
+            type="button"
+            aria-controls="navMenu"
+            aria-expanded="false"
+            hidden
+          >Menu <span aria-hidden="true">+</span></button>
+        </div>
+        <ul class="nav-menu" id="navMenu">
+          <li><a href="../../index.html#about">About</a></li>
+          <li><a href="../../index.html#projects">Projects</a></li>
+          <li><a href="../../index.html#contact">Contact</a></li>
+        </ul>
+      </nav>
+    </header>
+
+    <main id="main-content" class="case-main" tabindex="-1">
+      <div class="container">
+        <nav class="case-breadcrumb" aria-label="Breadcrumb">
+          <ol>
+            <li><a href="../../index.html#projects">Projects</a></li>
+            <li aria-current="page">V4 Flight Computer</li>
+          </ol>
+        </nav>
+
+        <div class="case-notice v4-notice" role="note">
+          <strong>Evidence-scoped case study.</strong>
+          <span>Fabrication and bench validation not verified; V4 has not flown.</span>
+        </div>
+
+        <header class="case-hero v4-hero">
+          <p class="eyebrow">AVIONICS / HARDWARE DESIGN</p>
+          <h1 id="case-title">V4 Flight Computer</h1>
+          <p class="case-lead">
+            A six-layer flight-data acquisition PCB built around the RP2040 design
+            ecosystem. This page documents the current design artifacts,
+            manufacturing preparation, and the verification work that still remains.
+          </p>
+          <a class="text-link case-back" href="../../index.html#projects">
+            <svg
+              class="direction-icon"
+              viewBox="0 0 16 16"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="1.5"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              aria-hidden="true"
+              focusable="false"
+            ><path d="M12 8H4m4-4-4 4 4 4" /></svg>
+            Back to projects
+          </a>
+        </header>
+
+        <dl class="case-facts panel" aria-label="Project facts">
+          <div><dt>Focus</dt><dd>PCB architecture &amp; release preparation</dd></div>
+          <div><dt>Status</dt><dd>In development · Hardware design</dd></div>
+          <div><dt>Revision</dt><dd>Rev A package · 2026-10-02</dd></div>
+          <div><dt>Format</dt><dd>Six-layer · 50 × 160 mm</dd></div>
+        </dl>
+
+        <div class="case-layout">
+          <article class="case-article" aria-labelledby="case-title">
+            <section class="case-section" id="overview" aria-labelledby="overview-title">
+              <p class="eyebrow">01 / Overview</p>
+              <h2 id="overview-title">Project Overview</h2>
+              <p>
+                V4 is a flight-computer PCB design intended to bring inertial,
+                barometric, GNSS, and removable-storage interfaces onto one board.
+                The current source includes an RP2040, an LSM6DSK320XTR inertial
+                sensor, a BMP390 barometer, a MAX-M10N-10B GNSS module, and a
+                microSD interface.
+              </p>
+              <div class="case-evidence panel">
+                <strong>My Role &amp; Contributions</strong>
+                <p>
+                  This is an independent engineering project developed with AI
+                  assistance. My contributions include AI-assisted work across
+                  schematic design, PCB layout and routing, firmware development,
+                  manufacturing-package review, and consistency checks, along with
+                  direct participation in design iterations and technical analysis.
+                  Firmware development is part of the project scope; completed firmware
+                  testing and operation on hardware are not verified.
+                </p>
+              </div>
+              <div class="evidence-card panel">
+                <span class="evidence-label verified">Verified design artifact</span>
+                <p>
+                  The named components, six copper layers, and 50 × 160 mm board
+                  outline are present in the audited design source. Their presence
+                  establishes design intent, not demonstrated hardware operation.
+                </p>
+              </div>
+            </section>
+
+            <section class="case-section" id="objectives" aria-labelledby="objectives-title">
+              <p class="eyebrow">02 / Requirements</p>
+              <h2 id="objectives-title">Design Objectives &amp; Constraints</h2>
+              <p>
+                The design brings flight-data interfaces, onboard logging, debug,
+                and power distribution into a narrow six-layer board. Layout work
+                must balance sensor placement, GNSS RF routing, reference planes,
+                connector access, assembly data, and a fixed mechanical envelope.
+              </p>
+              <div class="constraint-grid" aria-label="Design goals and constraints">
+                <div class="panel">
+                  <span class="evidence-label goal">Design goal</span>
+                  <h3>Integrated sensing</h3>
+                  <p>Provide electrical interfaces for motion, pressure, position, and storage subsystems.</p>
+                </div>
+                <div class="panel">
+                  <span class="evidence-label verified">Verified constraint</span>
+                  <h3>Board envelope</h3>
+                  <p>Maintain the audited 50 × 160 mm Edge.Cuts profile across six copper layers.</p>
+                </div>
+                <div class="panel">
+                  <span class="evidence-label pending">Pending review</span>
+                  <h3>Production behavior</h3>
+                  <p>Controlled impedance, stencil treatment, CAM output, and connector fit still require review.</p>
+                </div>
+              </div>
+            </section>
+
+            <section class="case-section" id="architecture" aria-labelledby="architecture-title">
+              <p class="eyebrow">03 / System</p>
+              <h2 id="architecture-title">System Architecture</h2>
+              <p>
+                The block view below is a conceptual map of interfaces represented
+                in the design. It is not a measured signal-flow diagram and does not
+                imply that any subsystem has been exercised in hardware.
+              </p>
+              <figure class="architecture-figure panel">
+                <div class="architecture-heading">
+                  <span>CONCEPTUAL SYSTEM DIAGRAM</span>
+                  <span>Logical grouping · not test evidence</span>
+                </div>
+                <div class="architecture-diagram">
+                  <div class="architecture-node power-node">
+                    <small>POWER</small>
+                    <strong>Input protection<br />&amp; distribution</strong>
+                  </div>
+                  <div class="architecture-node core-node">
+                    <small>COMPUTE</small>
+                    <strong>RP2040</strong>
+                    <span>W25Q16RVXHJQ flash</span>
+                  </div>
+                  <div class="architecture-branches" aria-label="Connected design subsystems">
+                    <div class="architecture-node"><small>MOTION</small><strong>LSM6DSK320XTR</strong></div>
+                    <div class="architecture-node"><small>PRESSURE</small><strong>BMP390</strong></div>
+                    <div class="architecture-node"><small>POSITION</small><strong>MAX-M10N-10B</strong></div>
+                    <div class="architecture-node"><small>STORAGE</small><strong>microSD interface</strong></div>
+                    <div class="architecture-node"><small>SERVICE</small><strong>USB · SWD · UART</strong></div>
+                    <div class="architecture-node"><small>EXPANSION</small><strong>3V3 AUX GPIO</strong></div>
+                  </div>
+                </div>
+                <figcaption>
+                  Conceptual illustration derived from audited component and interface
+                  names. It does not represent a completed PCB render, assembled board,
+                  or verified data path.
+                </figcaption>
+              </figure>
+              <div class="case-media panel pending-media">
+                <div class="case-media-slot" aria-hidden="true">
+                  <span>PROJECT IMAGE PENDING REVIEW</span>
+                  <span>No approved PCB render or hardware photo supplied</span>
+                </div>
+                <p>
+                  Reserved for an approved, accurately captioned design render or
+                  photograph. This placeholder is not evidence of fabrication.
+                </p>
+              </div>
+            </section>
+
+            <section class="case-section" id="pcb-design" aria-labelledby="pcb-design-title">
+              <p class="eyebrow">04 / PCB</p>
+              <h2 id="pcb-design-title">PCB Design &amp; Engineering Decisions</h2>
+              <p>
+                The stack assigns signal, reference, and distribution roles rather
+                than treating every internal layer as interchangeable. Two internal
+                ground-reference layers sit alongside a low-speed digital layer and
+                a power-distribution layer between the outer copper layers.
+              </p>
+              <ol class="layer-stack panel" aria-label="Six-layer PCB stack">
+                <li><span>L1</span><strong>F.Cu</strong><small>Components and routing</small></li>
+                <li><span>L2</span><strong>GND Reference</strong><small>In1.Cu</small></li>
+                <li><span>L3</span><strong>Low-Speed Digital</strong><small>In2.Cu</small></li>
+                <li><span>L4</span><strong>GND Reference</strong><small>In3.Cu</small></li>
+                <li><span>L5</span><strong>Power Distribution</strong><small>In4.Cu</small></li>
+                <li><span>L6</span><strong>B.Cu</strong><small>Components and routing</small></li>
+              </ol>
+              <div class="decision-list">
+                <div>
+                  <h3>Interface identity follows function</h3>
+                  <p>
+                    The current four-pin expansion connector is documented as 3.3 V
+                    AUX GPIO on GP23/GP24, not a display or I²C subsystem. A legacy
+                    reference designator remains, which is why labels must be checked
+                    against current electrical intent.
+                  </p>
+                </div>
+                <div>
+                  <h3>RF and assembly constraints stay visible</h3>
+                  <p>
+                    The release notes retain GNSS impedance review, USB locator-area
+                    review, and user-specified flash paste treatment as production-file
+                    approval gates rather than silently treating them as resolved.
+                  </p>
+                </div>
+              </div>
+            </section>
+
+            <section class="case-section" id="manufacturing" aria-labelledby="manufacturing-title">
+              <p class="eyebrow">05 / Release preparation</p>
+              <h2 id="manufacturing-title">Design Iterations &amp; Manufacturing Preparation</h2>
+              <p>
+                The Rev A package records a frozen source state and groups Gerber,
+                drill, assembly, and verification outputs. Independent read-only
+                checks found the archive internally intact and found strong structural
+                agreement between the current design source and those outputs.
+              </p>
+              <div class="case-evidence panel">
+                <strong>Iteration evidence</strong>
+                <p>
+                  <strong>Confirmed design change.</strong> Earlier source and
+                  documentation used Display-interface descriptions; the current
+                  active design defines the connector as 3.3 V AUX GPIO on GP23 and
+                  GP24, not I2C/display. The legacy J_DISPLAY1 reference remains.
+                </p>
+                <p>
+                  <strong>Legacy source and documentation remnants.</strong>
+                  Historical material referenced a 50 × 180 mm board, while the
+                  current Edge.Cuts and fabrication profile centerline are 50 × 160 mm.
+                  Older In1.Cu and In3.Cu GND zone bounds remain in source.
+                </p>
+                <p>
+                  <strong>Unresolved review findings.</strong> Manufacturing review
+                  detected procurement-field differences for J_RF1, J_SD1, J_USB1,
+                  and U2, plus retained GND zone definitions. Inspection found only
+                  that GND Gerber command centers remained inside the current profile;
+                  this does not establish all rendered copper or aperture extents or
+                  resolve CAM/electrical equivalence.
+                </p>
+              </div>
+              <div class="audit-grid">
+                <div class="panel">
+                  <strong>Archive integrity</strong>
+                  <span>30 / 30 outer entries read with matching CRC</span>
+                  <span>29 / 29 manifest hashes matched</span>
+                </div>
+                <div class="panel">
+                  <strong>Fabrication bundle</strong>
+                  <span>16 / 16 nested entries read with matching CRC</span>
+                  <span>Nested files matched their outer copies</span>
+                </div>
+                <div class="panel">
+                  <strong>Assembly data</strong>
+                  <span>104 BOM/CPL component references</span>
+                  <span>BOM fields matched schematics; CPL placements matched the PCB</span>
+                </div>
+              </div>
+              <div class="case-evidence panel evidence-boundary">
+                <span class="evidence-label boundary">Evidence boundary</span>
+                <p>
+                  Package consistency supports release review; it does not prove that
+                  boards were fabricated, assembled, electrically tested, or accepted
+                  by a manufacturer.
+                </p>
+              </div>
+            </section>
+
+            <section class="case-section" id="verification" aria-labelledby="verification-title">
+              <p class="eyebrow">06 / Evidence</p>
+              <h2 id="verification-title">Verification Status &amp; Known Limitations</h2>
+              <p>
+                Verification is separated by evidence type so that a file check is
+                never presented as a hardware result. Stored reports were inspected;
+                the design tools were not freshly rerun during the audit.
+              </p>
+              <div class="verification-list" role="list" aria-label="Verification status">
+                <div class="panel" role="listitem">
+                  <span class="evidence-label verified">Independently checked</span>
+                  <h3>Source and package identity</h3>
+                  <p>Current PCB and schematic hashes matched the audited baseline; all 50 listed active-source file hashes matched current bytes.</p>
+                </div>
+                <div class="panel" role="listitem">
+                  <span class="evidence-label reported">Stored report</span>
+                  <h3>ERC and DRC</h3>
+                  <p>ERC records two excluded warnings and no active errors. DRC records 13 findings: eight solder-mask bridges and five library-footprint mismatches, with zero unconnected items. DRC is not clean.</p>
+                </div>
+                <div class="panel" role="listitem">
+                  <span class="evidence-label limited">Limited geometry evidence</span>
+                  <h3>Outline and ground zones</h3>
+                  <p>The fabrication profile matches 50 × 160 mm and inspected GND Gerber command centers did not extend to the older 50 × 180 mm zone bounds. The stale source-zone definitions remain and full CAM/electrical equivalence was not established.</p>
+                </div>
+                <div class="panel" role="listitem">
+                  <span class="evidence-label pending">Open issue</span>
+                  <h3>Procurement metadata</h3>
+                  <p>PCB and schematic/BOM MPN fields differ for J_RF1, J_SD1, J_USB1, and U2. The J_USB1 PCB MPN field retains USB4105-GF-A-120 while the current schematic/BOM identifies USB4940-00-A.</p>
+                </div>
+                <div class="panel" role="listitem">
+                  <span class="evidence-label unexecuted">Not verified</span>
+                  <h3>Physical validation</h3>
+                  <p>CAM, stackup, impedance, stencil, first-article inspection, and bench validation are not verified by the audited evidence. V4 has not flown.</p>
+                </div>
+              </div>
+            </section>
+
+            <section class="case-section" id="lessons" aria-labelledby="lessons-title">
+              <p class="eyebrow">07 / Reflection</p>
+              <h2 id="lessons-title">Challenges &amp; Lessons Learned</h2>
+              <p>
+                The observed revision history shows why release review must compare
+                source intent, generated outputs, and procurement data instead of
+                trusting any one file in isolation.
+              </p>
+              <ul class="lesson-list">
+                <li><strong>Names can lag function.</strong> A legacy connector reference can survive after the electrical purpose changes, so current values and nets matter more than the refdes alone.</li>
+                <li><strong>Rendered output can hide stale source geometry.</strong> Inspected GND Gerber command centers remained within the 50 × 160 mm profile even though older zone bounds remain in source; this does not establish all rendered copper or aperture extents.</li>
+                <li><strong>Release preparation is not hardware validation.</strong> Hashes, BOM/CPL parity, and manufacturing files reduce ambiguity without demonstrating an assembled system.</li>
+              </ul>
+            </section>
+
+            <section class="case-section" id="next-steps-references" aria-labelledby="next-steps-title">
+              <p class="eyebrow">08 / Outlook</p>
+              <h2 id="next-steps-title">Next Steps &amp; References</h2>
+              <ol class="next-step-list">
+                <li>Reconcile connector and component procurement metadata across schematic, PCB, and assembly outputs.</li>
+                <li>Review or correct the historical internal-plane zone bounds, then freshly run ERC/DRC and classify every remaining finding.</li>
+                <li>Complete manufacturer CAM, stackup, impedance, stencil, and connector-fit review before authorizing production.</li>
+                <li>Keep fabrication, first-article inspection, bench testing, and flight testing as separate evidence gates.</li>
+              </ol>
+              <div class="reference-panel panel">
+                <h3>Audited references</h3>
+                <ul>
+                  <li>Current V4 KiCad project, PCB, wrapper, and eight-sheet schematic source set.</li>
+                  <li>V4 Rev A manufacturing package dated 2026-10-02, including Gerber, drill, BOM, CPL, and manifest outputs.</li>
+                  <li>Stored canonical ERC and DRC reports included with that package.</li>
+                </ul>
+                <p>Raw design and manufacturing files are intentionally not published with this case study.</p>
+              </div>
+            </section>
+          </article>
+
+          <aside class="case-aside">
+            <nav class="case-toc panel" aria-label="On this page">
+              <h2>On this page</h2>
+              <ol>
+                <li><a href="#overview">Overview</a></li>
+                <li><a href="#objectives">Objectives</a></li>
+                <li><a href="#architecture">Architecture</a></li>
+                <li><a href="#pcb-design">PCB decisions</a></li>
+                <li><a href="#manufacturing">Manufacturing prep</a></li>
+                <li><a href="#verification">Verification</a></li>
+                <li><a href="#lessons">Lessons learned</a></li>
+                <li><a href="#next-steps-references">Next steps &amp; references</a></li>
+              </ol>
+            </nav>
+          </aside>
+        </div>
+      </div>
+    </main>
+    <footer class="container footer">
+      <a class="brand" href="../../index.html#home">
+        <span class="monogram" aria-hidden="true">GQ<span>·</span></span>
+        <span class="sr-only">George Qiao, back to home</span>
+      </a>
+      <p>Perfection isn't the goal. Precision is.</p>
+      <span>© <span id="currentYear">2026</span> George Qiao</span>
+    </footer>
+  </body>
+</html>

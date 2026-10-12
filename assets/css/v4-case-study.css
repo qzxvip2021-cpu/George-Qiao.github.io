@@ -1,0 +1,312 @@
+/* V4 case-study presentation. Page-scoped additions only. */
+.v4-notice {
+  border-style: solid;
+  background: color-mix(in srgb, var(--accent) 5%, transparent);
+}
+.v4-hero {
+  max-width: 900px;
+}
+.evidence-card,
+.evidence-boundary {
+  padding: 23px;
+  margin-top: 24px;
+}
+.evidence-label {
+  display: inline-flex;
+  align-items: center;
+  min-height: 25px;
+  padding: 4px 9px;
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  color: var(--muted);
+  font: 9px ui-monospace, SFMono-Regular, Consolas, monospace;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+}
+.evidence-label::before {
+  content: "";
+  width: 6px;
+  height: 6px;
+  margin-right: 7px;
+  border-radius: 50%;
+  background: currentColor;
+}
+.evidence-label.verified,
+.evidence-label.goal {
+  color: var(--accent);
+}
+.evidence-label.pending,
+.evidence-label.unexecuted {
+  border-style: dashed;
+}
+.evidence-card p,
+.evidence-boundary p {
+  margin-top: 12px;
+  font-size: 13px;
+}
+.constraint-grid,
+.audit-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 14px;
+  margin-top: 26px;
+}
+.constraint-grid > div,
+.audit-grid > div {
+  min-width: 0;
+  padding: 22px;
+}
+.constraint-grid h3 {
+  margin: 18px 0 10px;
+  font-size: 18px;
+}
+.constraint-grid p,
+.audit-grid span {
+  font-size: 12px;
+  line-height: 1.75;
+}
+.architecture-figure {
+  overflow: hidden;
+  margin: 28px 0 24px;
+}
+.architecture-heading {
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+  padding: 16px 20px;
+  border-bottom: 1px solid var(--border);
+  color: var(--muted);
+  font: 9px ui-monospace, SFMono-Regular, Consolas, monospace;
+  letter-spacing: .1em;
+}
+.architecture-diagram {
+  display: grid;
+  grid-template-columns: minmax(125px, .7fr) minmax(165px, 1fr) minmax(250px, 1.5fr);
+  gap: 32px;
+  align-items: center;
+  min-height: 390px;
+  padding: 38px;
+  background:
+    linear-gradient(90deg, var(--grid) 1px, transparent 1px),
+    linear-gradient(var(--grid) 1px, transparent 1px),
+    var(--diagram-fill);
+  background-size: 26px 26px;
+}
+.architecture-node {
+  position: relative;
+  display: grid;
+  gap: 7px;
+  min-width: 0;
+  padding: 17px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: var(--surface);
+}
+.architecture-node small {
+  color: var(--accent);
+  font: 8px ui-monospace, SFMono-Regular, Consolas, monospace;
+  letter-spacing: .12em;
+}
+.architecture-node strong {
+  font-size: 13px;
+  line-height: 1.45;
+  overflow-wrap: anywhere;
+}
+.architecture-node span {
+  color: var(--muted);
+  font-size: 10px;
+}
+.power-node::after,
+.core-node::after {
+  content: "";
+  position: absolute;
+  left: 100%;
+  top: 50%;
+  width: 33px;
+  border-top: 1px solid var(--accent);
+}
+.core-node {
+  padding-block: 28px;
+  border-color: var(--accent);
+  box-shadow: 0 0 0 5px color-mix(in srgb, var(--accent) 8%, transparent);
+}
+.architecture-branches {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+}
+.architecture-figure figcaption,
+.pending-media > p {
+  padding: 15px 20px 18px;
+  color: var(--muted);
+  font-size: 12px;
+  line-height: 1.75;
+}
+.pending-media {
+  margin: 0;
+}
+.pending-media .case-media-slot {
+  aspect-ratio: 3 / 1;
+}
+.layer-stack {
+  display: grid;
+  gap: 0;
+  padding: 0;
+  margin: 28px 0;
+  overflow: hidden;
+  list-style: none;
+}
+.layer-stack li {
+  display: grid;
+  grid-template-columns: 45px minmax(0, 1fr) minmax(120px, .8fr);
+  gap: 16px;
+  align-items: center;
+  padding: 14px 20px;
+  border-bottom: 1px solid var(--border);
+}
+.layer-stack li:last-child {
+  border-bottom: 0;
+}
+.layer-stack span {
+  color: var(--accent);
+  font: 10px ui-monospace, SFMono-Regular, Consolas, monospace;
+}
+.layer-stack strong {
+  font-size: 13px;
+}
+.layer-stack small {
+  color: var(--muted);
+  font-size: 11px;
+  text-align: right;
+}
+.decision-list {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 28px;
+  margin-top: 32px;
+}
+.decision-list h3,
+.verification-list h3 {
+  margin-bottom: 12px;
+  font-size: 19px;
+}
+.decision-list p,
+.verification-list p {
+  font-size: 13px;
+}
+.audit-grid > div {
+  display: grid;
+  align-content: start;
+  gap: 9px;
+}
+.audit-grid strong {
+  margin-bottom: 5px;
+  font-size: 14px;
+}
+.audit-grid span {
+  color: var(--muted);
+}
+.verification-list {
+  display: grid;
+  gap: 14px;
+  margin-top: 28px;
+}
+.verification-list > div {
+  padding: 23px;
+}
+.verification-list h3 {
+  margin-top: 16px;
+}
+.lesson-list,
+.next-step-list {
+  display: grid;
+  gap: 15px;
+  padding-left: 22px;
+  margin: 28px 0 0;
+  color: var(--muted);
+}
+.lesson-list li,
+.next-step-list li {
+  padding-left: 7px;
+  font-size: 14px;
+  line-height: 1.85;
+}
+.lesson-list strong {
+  color: var(--text);
+}
+.reference-panel {
+  margin-top: 30px;
+  padding: 24px;
+}
+.reference-panel h3 {
+  margin-bottom: 17px;
+  font-size: 19px;
+}
+.reference-panel ul {
+  display: grid;
+  gap: 10px;
+  padding-left: 19px;
+  margin: 0 0 18px;
+  color: var(--muted);
+  font-size: 13px;
+}
+.reference-panel p {
+  padding-top: 17px;
+  border-top: 1px solid var(--border);
+  font-size: 12px;
+}
+@media (max-width: 900px) {
+  .constraint-grid,
+  .audit-grid {
+    grid-template-columns: 1fr;
+  }
+  .architecture-diagram {
+    grid-template-columns: 1fr 1fr;
+  }
+  .architecture-branches {
+    grid-column: 1 / -1;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+  .core-node::after {
+    display: none;
+  }
+}
+@media (max-width: 760px) {
+  .architecture-heading {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 6px;
+  }
+  .architecture-diagram {
+    grid-template-columns: 1fr;
+    gap: 14px;
+    padding: 24px;
+  }
+  .architecture-branches {
+    grid-column: auto;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  .power-node::after,
+  .core-node::after {
+    display: none;
+  }
+  .decision-list {
+    grid-template-columns: 1fr;
+  }
+  .pending-media .case-media-slot {
+    aspect-ratio: 16 / 8;
+  }
+}
+@media (max-width: 420px) {
+  .architecture-branches {
+    grid-template-columns: 1fr;
+  }
+  .layer-stack li {
+    grid-template-columns: 35px minmax(0, 1fr);
+    gap: 10px;
+  }
+  .layer-stack small {
+    grid-column: 2;
+    text-align: left;
+  }
+}
