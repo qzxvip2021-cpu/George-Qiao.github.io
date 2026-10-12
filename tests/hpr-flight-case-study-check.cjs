@@ -13,6 +13,15 @@ function all(pattern) {
   return [...html.matchAll(pattern)].map((match) => match[1]);
 }
 
+function section(id) {
+  const marker = `<section class="case-section" id="${id}"`;
+  const start = html.indexOf(marker);
+  assert.notEqual(start, -1, `Missing section body: ${id}`);
+  const next = html.indexOf('<section class="case-section"', start + marker.length);
+  const end = next === -1 ? html.indexOf("</article>", start) : next;
+  return html.slice(start, end);
+}
+
 const ids = all(/\bid="([^"]+)"/g);
 assert.equal(new Set(ids).size, ids.length, "Duplicate element IDs");
 assert.equal((html.match(/<h1\b/g) || []).length, 1, "Exactly one H1");
@@ -56,6 +65,27 @@ for (const ref of refs) {
 
 assert.match(html, /User-reported configuration and altitude; original flight evidence has not been checked/);
 assert.ok((html.match(/User-reported/gi) || []).length >= 8, "User-reported labels must remain prominent");
+const overview = section("overview");
+assert.match(overview, /My Role &amp; Contributions/);
+assert.match(overview, /I participated across the engineering cycle/);
+assert.match(overview, /structural design and CAD/);
+assert.match(overview, /fabrication and assembly of 3D-printed\s+components/);
+assert.match(overview, /motor selection and delay adjustment/);
+assert.match(overview, /parachute and\s+recovery-system configuration/);
+assert.match(overview, /launch-day preparation and field launch\s+operations/);
+assert.match(overview, /post-flight recovery inspection and analysis of the\s+available flight-data summary/);
+assert.match(overview, /do not imply sole ownership of all project work/);
+assert.match(section("configuration"), /I contributed to Thunder V2's structural design and CAD/);
+assert.match(section("configuration"), /does not establish materials, print parameters, exact\s+as-flown mass or dimensions, or structural-test results/);
+assert.match(section("motor-recovery"), /My participation included motor selection/);
+assert.match(section("flight-preparation-launch"), /I participated in prelaunch preparation and field launch operations/);
+assert.match(section("results"), /I participated in reviewing and analyzing the available AltimeterTwo\s+summary/);
+assert.match(section("recovery-observations"), /I participated in post-flight recovery inspection/);
+assert.match(section("recovery-observations"), /Original inspection\s+records and specific outcomes have not been reviewed/);
+assert.match(section("lessons"), /CAD must stay connected to physical work/);
+assert.match(section("lessons"), /Flight configuration is a coupled decision/);
+assert.match(section("lessons"), /Operations need contemporaneous evidence/);
+assert.match(section("lessons"), /A summary is not a complete flight profile/);
 assert.match(html, /AeroTech H219T-14A/);
 assert.match(html, /Adjusted with UDDT to 10 seconds/);
 assert.match(html, /30-inch parachute/);
