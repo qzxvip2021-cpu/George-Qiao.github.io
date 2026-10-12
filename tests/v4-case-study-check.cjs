@@ -54,6 +54,20 @@ for (const ref of refs) {
 }
 
 assert.match(html, /Fabrication and bench validation not verified; V4 has not flown/);
+assert.match(html, /My Role &amp; Contributions/);
+assert.match(html, /independent engineering project developed with AI/);
+assert.match(html, /AI-assisted work across\s+schematic design/);
+assert.match(html, /PCB layout and routing, firmware development/);
+assert.match(html, /completed firmware\s+testing and operation on hardware are not verified/);
+assert.match(html, /Confirmed design change/);
+assert.match(html, /Earlier source and\s+documentation used Display-interface descriptions/);
+assert.match(html, /3\.3 V AUX GPIO on GP23 and\s+GP24, not I2C\/display/);
+assert.match(html, /Legacy source and documentation remnants/);
+assert.match(html, /Historical material referenced a 50 × 180 mm board/);
+assert.match(html, /current Edge\.Cuts and fabrication profile centerline are 50 × 160 mm/);
+assert.match(html, /Unresolved review findings/);
+assert.match(html, /procurement-field differences for J_RF1, J_SD1, J_USB1,\s+and U2/);
+assert.match(html, /does not establish all rendered copper or aperture extents or\s+resolve CAM\/electrical equivalence/);
 assert.match(html, /V4 has not flown/);
 assert.match(html, /DRC is not clean/);
 assert.match(html, /13 findings/);

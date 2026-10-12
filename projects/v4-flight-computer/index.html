@@ -111,6 +111,18 @@
                 sensor, a BMP390 barometer, a MAX-M10N-10B GNSS module, and a
                 microSD interface.
               </p>
+              <div class="case-evidence panel">
+                <strong>My Role &amp; Contributions</strong>
+                <p>
+                  This is an independent engineering project developed with AI
+                  assistance. My contributions include AI-assisted work across
+                  schematic design, PCB layout and routing, firmware development,
+                  manufacturing-package review, and consistency checks, along with
+                  direct participation in design iterations and technical analysis.
+                  Firmware development is part of the project scope; completed firmware
+                  testing and operation on hardware are not verified.
+                </p>
+              </div>
               <div class="evidence-card panel">
                 <span class="evidence-label verified">Verified design artifact</span>
                 <p>
@@ -246,6 +258,29 @@
                 checks found the archive internally intact and found strong structural
                 agreement between the current design source and those outputs.
               </p>
+              <div class="case-evidence panel">
+                <strong>Iteration evidence</strong>
+                <p>
+                  <strong>Confirmed design change.</strong> Earlier source and
+                  documentation used Display-interface descriptions; the current
+                  active design defines the connector as 3.3 V AUX GPIO on GP23 and
+                  GP24, not I2C/display. The legacy J_DISPLAY1 reference remains.
+                </p>
+                <p>
+                  <strong>Legacy source and documentation remnants.</strong>
+                  Historical material referenced a 50 × 180 mm board, while the
+                  current Edge.Cuts and fabrication profile centerline are 50 × 160 mm.
+                  Older In1.Cu and In3.Cu GND zone bounds remain in source.
+                </p>
+                <p>
+                  <strong>Unresolved review findings.</strong> Manufacturing review
+                  detected procurement-field differences for J_RF1, J_SD1, J_USB1,
+                  and U2, plus retained GND zone definitions. Inspection found only
+                  that GND Gerber command centers remained inside the current profile;
+                  this does not establish all rendered copper or aperture extents or
+                  resolve CAM/electrical equivalence.
+                </p>
+              </div>
               <div class="audit-grid">
                 <div class="panel">
                   <strong>Archive integrity</strong>
