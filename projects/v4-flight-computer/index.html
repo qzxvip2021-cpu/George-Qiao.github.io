@@ -65,7 +65,7 @@
 
         <div class="case-notice v4-notice" role="note">
           <strong>Evidence-scoped case study.</strong>
-          <span>Hardware design in development — not manufactured, bench-tested, or flown.</span>
+          <span>Fabrication and bench validation not verified; V4 has not flown.</span>
         </div>
 
         <header class="case-hero v4-hero">
@@ -303,9 +303,9 @@
                   <p>PCB and schematic/BOM MPN fields differ for J_RF1, J_SD1, J_USB1, and U2. The J_USB1 PCB MPN field retains USB4105-GF-A-120 while the current schematic/BOM identifies USB4940-00-A.</p>
                 </div>
                 <div class="panel" role="listitem">
-                  <span class="evidence-label unexecuted">Not executed</span>
+                  <span class="evidence-label unexecuted">Not verified</span>
                   <h3>Physical validation</h3>
-                  <p>CAM, stackup, impedance, stencil, first-article inspection, bench validation, and flight validation remain outstanding. V4 has not flown.</p>
+                  <p>CAM, stackup, impedance, stencil, first-article inspection, and bench validation are not verified by the audited evidence. V4 has not flown.</p>
                 </div>
               </div>
             </section>
@@ -320,7 +320,7 @@
               </p>
               <ul class="lesson-list">
                 <li><strong>Names can lag function.</strong> A legacy connector reference can survive after the electrical purpose changes, so current values and nets matter more than the refdes alone.</li>
-                <li><strong>Rendered output can hide stale source geometry.</strong> The inspected GND output stayed within the profile even though older zone bounds remain in source.</li>
+                <li><strong>Rendered output can hide stale source geometry.</strong> Inspected GND Gerber command centers remained within the 50 × 160 mm profile even though older zone bounds remain in source; this does not establish all rendered copper or aperture extents.</li>
                 <li><strong>Release preparation is not hardware validation.</strong> Hashes, BOM/CPL parity, and manufacturing files reduce ambiguity without demonstrating an assembled system.</li>
               </ul>
             </section>

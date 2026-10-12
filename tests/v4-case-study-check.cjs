@@ -53,11 +53,12 @@ for (const ref of refs) {
   localFiles++;
 }
 
-assert.match(html, /not manufactured, bench-tested, or flown/i);
+assert.match(html, /Fabrication and bench validation not verified; V4 has not flown/);
 assert.match(html, /V4 has not flown/);
 assert.match(html, /DRC is not clean/);
 assert.match(html, /13 findings/);
 assert.match(html, /50 × 180 mm/);
+assert.match(html, /does not establish all rendered copper or aperture extents/);
 assert.match(html, /USB4105-GF-A-120/);
 assert.match(html, /USB4940-00-A/);
 assert.match(html, /CONCEPTUAL SYSTEM DIAGRAM/);
