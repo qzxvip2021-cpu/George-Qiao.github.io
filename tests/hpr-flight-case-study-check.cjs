@@ -99,8 +99,19 @@ assert.match(html, /did not establish an approved preflight\s+prediction/);
 assert.match(html, /No continuous measured curve is presented/);
 assert.match(html, /prediction-accuracy calculation is made/);
 assert.match(html, /Ambiguous typed ejection and\s+descent fields are omitted/);
-assert.match(html, /FLIGHT PHOTO PENDING REVIEW/);
-assert.match(html, /No approved Thunder V2 launch photograph supplied/);
+assert.match(
+  section("configuration"),
+  /src="\.\.\/\.\.\/assets\/projects\/thunder-v2\/thunder-v2-nose-cone\.jpg"[\s\S]*alt="Black Thunder V2 nose cone displayed indoors\."[\s\S]*width="900"[\s\S]*height="1600"[\s\S]*Physical nose cone for Thunder V2\./,
+);
+assert.match(
+  section("flight-preparation-launch"),
+  /src="\.\.\/\.\.\/assets\/projects\/thunder-v2\/launch-event-team\.jpg"[\s\S]*alt="Three teammates holding a model rocket outdoors at a launch event\."[\s\S]*width="1600"[\s\S]*height="1067"[\s\S]*At a model rocket launch event with teammates\./,
+);
+assert.equal((html.match(/<figure class="case-media panel project-photo/g) || []).length, 2);
+assert.equal((html.match(/loading="lazy"/g) || []).length, 2);
+assert.equal((html.match(/decoding="async"/g) || []).length, 2);
+assert.ok(!html.includes("FLIGHT PHOTO PENDING REVIEW"), "Approved launch photo must replace the pending placeholder");
+assert.ok(!html.includes("No approved Thunder V2 launch photograph supplied"));
 assert.match(html, /Private links, local paths, raw project files, and unapproved photographs are intentionally not published/);
 assert.ok(!/2,?323\s*ft/i.test(html), "Unapproved simulation prediction must not appear");
 assert.ok(!/prediction accuracy/i.test(html), "Do not present prediction accuracy");
@@ -111,6 +122,8 @@ assert.ok(!/file:\/\/|[A-Z]:\\/i.test(html), "Private local paths must not appea
 assert.ok(!home.includes("thunder-v2-hpr-flight"), "Homepage must not link the private case study");
 assert.equal((html.match(/<section class="case-section"/g) || []).length, 8);
 assert.match(css, /\.result-card/);
+assert.match(css, /\.project-photo img/);
+assert.match(css, /\.configuration-photo img/);
 assert.match(css, /@media \(max-width: 760px\)/);
 
 console.log(
