@@ -19,6 +19,7 @@
     <meta name="theme-color" content="#101117" />
     <link rel="icon" type="image/svg+xml" href="./assets/ele/favicon.svg" />
     <link rel="stylesheet" href="./assets/css/style.css" />
+    <link rel="stylesheet" href="./assets/css/engineering-timeline.css" />
     <script src="./assets/js/script.js" defer></script>
   </head>
   <body>
@@ -53,6 +54,7 @@
         <ul class="nav-menu" id="navMenu">
           <li><a href="#about">About</a></li>
           <li><a href="#projects">Projects</a></li>
+          <li><a href="#journey">Journey</a></li>
           <li>
             <a href="#contact"
               >Contact
@@ -431,13 +433,168 @@
         </div>
       </section>
       <section
+        class="section journey-section container"
+        id="journey"
+        aria-labelledby="journey-title"
+      >
+        <div class="section-heading journey-heading">
+          <p class="eyebrow">03 / Engineering Journey</p>
+          <h2 id="journey-title">
+            Built one milestone at a time.<br /><span class="muted"
+              >The work keeps moving.</span
+            >
+          </h2>
+          <p class="journey-intro">
+            A verified timeline of engineering work, team milestones, and
+            projects in development.
+          </p>
+        </div>
+        <ol class="timeline-list" aria-label="Engineering journey milestones">
+          <li class="timeline-item">
+            <time class="timeline-date" datetime="2025-08">August 2025</time>
+            <span class="timeline-marker" aria-hidden="true"></span>
+            <article class="timeline-card panel">
+              <div class="timeline-card-heading">
+                <span class="timeline-index" aria-hidden="true">01</span>
+                <h3>Getting Started in Rocketry</h3>
+              </div>
+              <p>
+                Art Learning Mission (Team 2)&mdash;the team's official
+                name&mdash;formed on August 19, 2025. Its first team rocket
+                launch attempt followed on August 24, 2025; this milestone does
+                not establish a successful recovery.
+              </p>
+            </article>
+          </li>
+          <li class="timeline-item">
+            <time class="timeline-date" datetime="2025-12"
+              >December 2025 &ndash; May 2026</time
+            >
+            <span class="timeline-marker" aria-hidden="true"></span>
+            <article class="timeline-card panel">
+              <div class="timeline-card-heading">
+                <span class="timeline-index" aria-hidden="true">02</span>
+                <h3>Rocket Flight Solver</h3>
+              </div>
+              <p>
+                Developed a Python-based tool for rocket apogee estimation and
+                liftoff-mass optimization. GitHub commit history confirms
+                project activity from December 2025 through May 2026. The tool
+                has not been independently validated against real-flight
+                accuracy.
+              </p>
+              <a
+                class="text-link timeline-link"
+                href="https://github.com/qzxvip2021-cpu/rocket-flight-solver"
+                target="_blank"
+                rel="noopener noreferrer"
+                >View repository
+                <svg
+                  class="direction-icon"
+                  viewBox="0 0 16 16"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="1.5"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  aria-hidden="true"
+                  focusable="false"
+                >
+                  <path d="M4 12 12 4M6 4h6v6" />
+                </svg>
+                <span class="sr-only"> (opens in a new tab)</span></a
+              >
+            </article>
+          </li>
+          <li class="timeline-item">
+            <time class="timeline-date" datetime="2026-05">May 2026</time>
+            <span class="timeline-marker" aria-hidden="true"></span>
+            <article class="timeline-card panel">
+              <div class="timeline-card-heading">
+                <span class="timeline-index" aria-hidden="true">03</span>
+                <h3>American Rocketry Challenge National Finals</h3>
+              </div>
+              <p>
+                Art Learning Mission (Team 2) placed 42nd at the 2026 National
+                Finals. This is the team's placement, not an individual
+                ranking. I served as Team Captain, contributing to rocket
+                design, team coordination, and project documentation.
+              </p>
+              <a
+                class="text-link timeline-link"
+                href="https://www.rocketrychallenge.org/result/2026/"
+                target="_blank"
+                rel="noopener noreferrer"
+                >View official results
+                <svg
+                  class="direction-icon"
+                  viewBox="0 0 16 16"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="1.5"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  aria-hidden="true"
+                  focusable="false"
+                >
+                  <path d="M4 12 12 4M6 4h6v6" />
+                </svg>
+                <span class="sr-only"> (opens in a new tab)</span></a
+              >
+            </article>
+          </li>
+          <li class="timeline-item">
+            <time class="timeline-date" datetime="2026-10-02"
+              >October 2, 2026</time
+            >
+            <span class="timeline-marker" aria-hidden="true"></span>
+            <article class="timeline-card panel">
+              <div class="timeline-card-heading">
+                <span class="timeline-index" aria-hidden="true">04</span>
+                <h3>V4 Flight Computer &mdash; Rev A Design Snapshot</h3>
+              </div>
+              <p>
+                Advanced a six-layer RP2040-based flight-computer design through
+                Rev A manufacturing-package preparation and consistency review.
+              </p>
+              <p class="timeline-status">In development &middot; Hardware design</p>
+              <p class="timeline-boundary">
+                No claim is made that the PCB was manufactured, physically
+                tested, or flown.
+              </p>
+            </article>
+          </li>
+          <li class="timeline-item">
+            <time class="timeline-date" datetime="2026-10">October 2026</time>
+            <span class="timeline-marker" aria-hidden="true"></span>
+            <article class="timeline-card panel">
+              <div class="timeline-card-heading">
+                <span class="timeline-index" aria-hidden="true">05</span>
+                <h3>Thunder V2 &mdash; HPR Flight Experience</h3>
+              </div>
+              <p>
+                Participated in structural design, fabrication and assembly,
+                motor and recovery configuration, launch operations, and
+                post-flight data review. AltimeterTwo original display video
+                shows a peak-altitude reading of 2,329 ft.
+              </p>
+              <p class="timeline-boundary">
+                The exact launch date remains unconfirmed. No claim is made
+                about OpenRocket preflight-prediction accuracy or a complete
+                recovery sequence.
+              </p>
+            </article>
+          </li>
+        </ol>
+      </section>
+      <section
         class="section container contact-section"
         id="contact"
         aria-labelledby="contact-title"
       >
         <div class="contact-panel panel">
           <div>
-            <p class="eyebrow">03 / Contact</p>
+            <p class="eyebrow">04 / Contact</p>
             <h2 id="contact-title">Let's compare notes.</h2>
             <p>
               Have a question about a project or an idea to share?<br />I'd be
