@@ -1,0 +1,150 @@
+/* Engineering Journey timeline. Homepage-scoped additions only. */
+.journey-heading {
+  max-width: 760px;
+}
+.journey-intro {
+  max-width: 620px;
+  margin-top: 20px;
+  font-size: 14px;
+  line-height: 1.85;
+}
+.timeline-list {
+  position: relative;
+  display: grid;
+  gap: 22px;
+  padding: 0;
+  margin: 42px 0 0;
+  list-style: none;
+}
+.timeline-list::before {
+  content: "";
+  position: absolute;
+  top: 14px;
+  bottom: 14px;
+  left: 167px;
+  width: 1px;
+  background: var(--border);
+}
+.timeline-item {
+  display: grid;
+  grid-template-columns: 150px 34px minmax(0, 1fr);
+  align-items: start;
+  min-width: 0;
+}
+.timeline-date {
+  grid-column: 1;
+  padding: 5px 17px 0 0;
+  color: var(--muted);
+  font: 10px/1.7 ui-monospace, SFMono-Regular, Consolas, monospace;
+  letter-spacing: .08em;
+  text-align: right;
+  text-transform: uppercase;
+}
+.timeline-marker {
+  position: relative;
+  z-index: 1;
+  grid-column: 2;
+  justify-self: center;
+  width: 11px;
+  height: 11px;
+  margin-top: 8px;
+  border: 2px solid var(--bg);
+  border-radius: 50%;
+  background: var(--accent);
+  box-shadow: 0 0 0 1px var(--accent);
+}
+.timeline-card {
+  grid-column: 3;
+  min-width: 0;
+  padding: 28px 30px;
+}
+.timeline-card-heading {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  gap: 17px;
+  align-items: start;
+}
+.timeline-index {
+  color: var(--accent);
+  font: 10px/1.6 ui-monospace, SFMono-Regular, Consolas, monospace;
+  letter-spacing: .11em;
+}
+.timeline-card h3 {
+  font-size: 24px;
+  line-height: 1.2;
+}
+.timeline-card > p {
+  max-width: 760px;
+  margin: 17px 0 0 35px;
+  font-size: 14px;
+  line-height: 1.85;
+}
+.timeline-card .timeline-status {
+  width: fit-content;
+  padding: 5px 10px;
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  color: var(--accent);
+  font: 10px/1.5 ui-monospace, SFMono-Regular, Consolas, monospace;
+  letter-spacing: .07em;
+  text-transform: uppercase;
+}
+.timeline-card .timeline-boundary {
+  padding-left: 13px;
+  border-left: 1px solid var(--accent);
+  font-size: 12px;
+}
+.timeline-link {
+  margin: 18px 0 0 35px;
+}
+@media (max-width: 760px) {
+  .timeline-list {
+    gap: 28px;
+    margin-top: 34px;
+  }
+  .timeline-list::before {
+    top: 8px;
+    bottom: 12px;
+    left: 10px;
+  }
+  .timeline-item {
+    grid-template-columns: 22px minmax(0, 1fr);
+    row-gap: 9px;
+  }
+  .timeline-date {
+    grid-column: 2;
+    grid-row: 1;
+    padding: 0;
+    text-align: left;
+  }
+  .timeline-marker {
+    grid-column: 1;
+    grid-row: 1 / span 2;
+    justify-self: start;
+    margin: 3px 0 0 5px;
+  }
+  .timeline-card {
+    grid-column: 2;
+    grid-row: 2;
+    padding: 24px;
+  }
+  .timeline-card-heading {
+    gap: 12px;
+  }
+  .timeline-card h3 {
+    font-size: 21px;
+  }
+  .timeline-card > p,
+  .timeline-link {
+    margin-left: 0;
+  }
+}
+@media (max-width: 360px) {
+  .timeline-card {
+    padding: 21px;
+  }
+  .timeline-card-heading {
+    grid-template-columns: 1fr;
+    gap: 7px;
+  }
+}
