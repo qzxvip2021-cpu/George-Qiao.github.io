@@ -91,7 +91,7 @@ assert.match(awards, /Evidence basis: user-provided membership card; no independ
 for (const href of [
   "https://www.rocketrychallenge.org/result/2026/",
   "https://www.rocketrychallenge.org/launchpad-league/",
-  "https://www.nar.org/JuniorHPRParticipationProgramProcedures",
+  "https://www.nar.org/content.aspx?club_id=114127&amp;module_id=765342&amp;page_id=22",
 ]) {
   const escaped = href.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
   assert.match(awards, new RegExp(`href="${escaped}"[\\s\\S]*?target="_blank"[\\s\\S]*?rel="noopener noreferrer"`));
