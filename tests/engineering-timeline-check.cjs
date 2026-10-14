@@ -33,7 +33,7 @@ const contactAt = html.indexOf('id="contact"');
 assert.ok(projectsAt < journeyAt && journeyAt < contactAt, "Journey must sit between Projects and Contact");
 assert.match(html, /<a href="#journey">Journey<\/a>/);
 assert.match(html, /<p class="eyebrow">03 \/ Engineering Journey<\/p>/);
-assert.match(html, /<p class="eyebrow">04 \/ Contact<\/p>/);
+assert.match(html, /<p class="eyebrow">05 \/ Contact<\/p>/);
 
 const journey = section("journey", "contact");
 assert.equal((journey.match(/class="timeline-item"/g) || []).length, 5, "Exactly five milestones");
