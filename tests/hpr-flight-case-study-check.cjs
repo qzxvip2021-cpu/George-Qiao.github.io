@@ -33,7 +33,7 @@ const expectedSections = [
   ["configuration", "Rocket Configuration"],
   ["motor-recovery", "Motor &amp; Recovery Configuration"],
   ["flight-preparation-launch", "Flight Preparation &amp; Launch"],
-  ["results", "User-Reported Flight Results"],
+  ["results", "AltimeterTwo Display Results"],
   ["recovery-observations", "Recovery Observations &amp; Limitations"],
   ["lessons", "Engineering Challenges &amp; Lessons Learned"],
   ["next-steps-references", "Next Steps &amp; Evidence References"],
@@ -63,8 +63,11 @@ for (const ref of refs) {
   localFiles++;
 }
 
-assert.match(html, /User-reported configuration and altitude; original flight evidence has not been checked/);
-assert.ok((html.match(/User-reported/gi) || []).length >= 8, "User-reported labels must remain prominent");
+assert.match(html, /User-reported configuration; original AltimeterTwo display video confirms a 2,329 ft screen reading/);
+assert.match(html, /Reported setup; video-confirmed display/);
+assert.match(html, /AltimeterTwo display · 2,329 ft \(video-confirmed\)/);
+assert.ok((section("motor-recovery").match(/User-reported/gi) || []).length >= 4, "Motor and recovery configuration must remain user-reported");
+assert.ok(!/original flight evidence has not been checked|original display photograph\/video and contemporaneous written record not reviewed/i.test(html), "Outdated video-evidence claims must be removed");
 const overview = section("overview");
 assert.match(overview, /My Role &amp; Contributions/);
 assert.match(overview, /I participated across the engineering cycle/);
@@ -79,7 +82,7 @@ assert.match(section("configuration"), /I contributed to Thunder V2's structural
 assert.match(section("configuration"), /does not establish materials, print parameters, exact\s+as-flown mass or dimensions, or structural-test results/);
 assert.match(section("motor-recovery"), /My participation included motor selection/);
 assert.match(section("flight-preparation-launch"), /I participated in prelaunch preparation and field launch operations/);
-assert.match(section("results"), /I participated in reviewing and analyzing the available AltimeterTwo\s+summary/);
+assert.match(section("results"), /I participated in reviewing and analyzing the AltimeterTwo\s+summary/);
 assert.match(section("recovery-observations"), /I participated in post-flight recovery inspection/);
 assert.match(section("recovery-observations"), /Original inspection\s+records and specific outcomes have not been reviewed/);
 assert.match(section("lessons"), /CAD must stay connected to physical work/);
@@ -92,13 +95,18 @@ assert.match(html, /30-inch parachute/);
 assert.match(html, /No JLCR used on this flight/);
 assert.match(html, /2,329 ft/);
 assert.match(html, /AltimeterTwo/);
-assert.match(html, /original display photograph\/video and contemporaneous written record not reviewed/);
-assert.match(html, /photograph or video capturing the AltimeterTwo displayed summary/);
+assert.match(section("results"), /class="evidence-label located">Video-confirmed instrument readout/);
+assert.ok(!/class="evidence-label reported">Video-confirmed instrument readout/.test(html), "Screen reading must not use reported evidence styling");
+assert.match(section("results"), /The original display video has been reviewed/);
+assert.match(section("results"), /measurement accuracy and specific launch linkage remain unverified/);
+assert.match(section("next-steps-references"), /Match the reviewed AltimeterTwo display video to a specific launch/);
+assert.match(section("next-steps-references"), /Original AltimeterTwo display video: confirms the 2,329 ft screen reading/);
 assert.ok(!/\bexport(?:ed)?\b/i.test(html), "Do not imply AltimeterTwo export capability");
 assert.match(html, /did not establish an approved preflight\s+prediction/);
 assert.match(html, /No continuous measured curve is presented/);
 assert.match(html, /prediction-accuracy calculation is made/);
-assert.match(html, /Ambiguous typed ejection and\s+descent fields are omitted/);
+assert.match(html, /Video-confirmed but anomalous\s+ejection and descent fields are not used to establish actual flight events/);
+assert.match(section("recovery-observations"), /their event classification is unresolved/);
 assert.match(
   section("configuration"),
   /src="\.\.\/\.\.\/assets\/projects\/thunder-v2\/thunder-v2-nose-cone\.jpg"[\s\S]*alt="Black Thunder V2 nose cone displayed indoors\."[\s\S]*width="900"[\s\S]*height="1600"[\s\S]*Physical nose cone for Thunder V2\./,
