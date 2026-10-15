@@ -82,7 +82,7 @@ assert.match(section("configuration"), /I contributed to Thunder V2's structural
 assert.match(section("configuration"), /does not establish materials, print parameters, exact\s+as-flown mass or dimensions, or structural-test results/);
 assert.match(section("motor-recovery"), /My participation included motor selection/);
 assert.match(section("flight-preparation-launch"), /I participated in prelaunch preparation and field launch operations/);
-assert.match(section("results"), /I participated in reviewing and analyzing the available AltimeterTwo\s+summary/);
+assert.match(section("results"), /I participated in reviewing and analyzing the AltimeterTwo\s+summary/);
 assert.match(section("recovery-observations"), /I participated in post-flight recovery inspection/);
 assert.match(section("recovery-observations"), /Original inspection\s+records and specific outcomes have not been reviewed/);
 assert.match(section("lessons"), /CAD must stay connected to physical work/);
