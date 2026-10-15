@@ -97,10 +97,9 @@ for (const href of [
   assert.match(awards, new RegExp(`href="${escaped}"[\\s\\S]*?target="_blank"[\\s\\S]*?rel="noopener noreferrer"`));
 }
 
-assert.ok(
-  !/href="[^"]*projects\/(?:v4-flight-computer|thunder-v2-hpr-flight|thunder-v2-flight-evidence)\/?[^"]*"/i.test(html),
-  "Homepage must not link the unpublished case-study pages",
-);
+assert.match(html, /href="\.\/projects\/v4-flight-computer\/index\.html"/);
+assert.match(html, /href="\.\/projects\/thunder-v2-hpr-flight\/index\.html"/);
+assert.ok(!/href="[^"]*projects\/thunder-v2-flight-evidence/i.test(html), "Evidence page must remain outside homepage navigation");
 assert.ok(!/finalists?|finals field|\b\d+\s+teams?\b/i.test(awards), "Do not state finalist counts");
 assert.ok(!/narTcert|AIME|USNCO/i.test(awards), "Do not add unapproved honors");
 assert.ok(!/membership (?:number|id)|expiration|expiry|adult level|level 2/i.test(awards), "Do not expose or overstate credential details");

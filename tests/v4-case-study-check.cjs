@@ -6,6 +6,7 @@ const path = require("node:path");
 const root = path.resolve(__dirname, "..");
 const page = path.join(root, "projects", "v4-flight-computer", "index.html");
 const html = fs.readFileSync(page, "utf8");
+const home = fs.readFileSync(path.join(root, "index.html"), "utf8");
 const css = fs.readFileSync(path.join(root, "assets", "css", "v4-case-study.css"), "utf8");
 
 function all(pattern) {
@@ -16,7 +17,7 @@ const ids = all(/\bid="([^"]+)"/g);
 assert.equal(new Set(ids).size, ids.length, "Duplicate element IDs");
 assert.equal((html.match(/<h1\b/g) || []).length, 1, "Exactly one H1");
 assert.equal((html.match(/<main\b/g) || []).length, 1, "Exactly one main");
-assert.match(html, /name="robots" content="noindex, nofollow"/);
+assert.ok(!/<meta\s+name="robots"[^>]*noindex/i.test(html), "Published V4 page must be indexable");
 
 const expectedSections = [
   ["overview", "Project Overview"],
@@ -76,7 +77,8 @@ assert.match(html, /does not establish all rendered copper or aperture extents/)
 assert.match(html, /USB4105-GF-A-120/);
 assert.match(html, /USB4940-00-A/);
 assert.match(html, /CONCEPTUAL SYSTEM DIAGRAM/);
-assert.match(html, /PROJECT IMAGE PENDING REVIEW/);
+assert.ok(!/PROJECT IMAGE PENDING REVIEW|pending-media|No approved PCB render or hardware photo supplied/.test(html), "Published V4 must not show an unapproved image placeholder");
+assert.match(home, /href="\.\/projects\/v4-flight-computer\/index\.html"/);
 assert.ok(!html.includes("flight-proven"), "Unsupported flight-proven claim");
 assert.ok(!html.includes("fully verified"), "Unsupported fully verified claim");
 assert.ok(!html.includes("manufacturing ready"), "Unsupported manufacturing-ready claim");
@@ -86,5 +88,5 @@ assert.match(css, /max-width:\s*760px/);
 
 console.log(
   `PASS: V4 case study, ${expectedSections.length} sections, ${ids.length} unique IDs, ` +
-    `${localFiles} relative files, evidence boundaries, noindex`,
+    `${localFiles} relative files, evidence boundaries, indexable`,
 );

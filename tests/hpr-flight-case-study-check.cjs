@@ -26,7 +26,7 @@ const ids = all(/\bid="([^"]+)"/g);
 assert.equal(new Set(ids).size, ids.length, "Duplicate element IDs");
 assert.equal((html.match(/<h1\b/g) || []).length, 1, "Exactly one H1");
 assert.equal((html.match(/<main\b/g) || []).length, 1, "Exactly one main");
-assert.match(html, /name="robots" content="noindex, nofollow"/);
+assert.ok(!/<meta\s+name="robots"[^>]*noindex/i.test(html), "Published Thunder V2 case study must be indexable");
 
 const expectedSections = [
   ["overview", "Rocket Overview &amp; Design Objectives"],
@@ -127,7 +127,8 @@ assert.ok(!html.includes("LOC-IV"), "Unrelated rocket history must not appear");
 assert.ok(!html.includes("V4 Flight Computer"), "Unrelated V4 project must not appear");
 assert.ok(!html.includes("A42"), "Unrelated project must not appear");
 assert.ok(!/file:\/\/|[A-Z]:\\/i.test(html), "Private local paths must not appear");
-assert.ok(!home.includes("thunder-v2-hpr-flight"), "Homepage must not link the private case study");
+assert.match(home, /href="\.\/projects\/thunder-v2-hpr-flight\/index\.html"/);
+assert.match(section("results"), /href="\.\.\/thunder-v2-flight-evidence\/index\.html"/);
 assert.equal((html.match(/<section class="case-section"/g) || []).length, 8);
 assert.match(css, /\.result-card/);
 assert.match(css, /\.project-photo img/);
@@ -136,5 +137,5 @@ assert.match(css, /@media \(max-width: 760px\)/);
 
 console.log(
   `PASS: Thunder V2 HPR case study, ${expectedSections.length} sections, ${ids.length} unique IDs, ` +
-    `${localFiles} relative files, user-reported boundaries, noindex`,
+    `${localFiles} relative files, user-reported boundaries, indexable`,
 );

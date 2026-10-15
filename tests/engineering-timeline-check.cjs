@@ -91,10 +91,9 @@ for (const href of [
   assert.match(journey, new RegExp(`href="${escaped}"[\\s\\S]*?target="_blank"[\\s\\S]*?rel="noopener noreferrer"`));
 }
 
-assert.ok(
-  !/href="[^"]*projects\/(?:v4-flight-computer|thunder-v2-hpr-flight|thunder-v2-flight-evidence)\/?[^"]*"/i.test(html),
-  "Homepage must not link the unpublished case-study pages",
-);
+assert.match(html, /href="\.\/projects\/v4-flight-computer\/index\.html"/);
+assert.match(journey, /href="\.\/projects\/thunder-v2-hpr-flight\/index\.html"/);
+assert.ok(!/href="[^"]*projects\/thunder-v2-flight-evidence/i.test(html), "Evidence page must not be a top-level homepage link");
 assert.ok(!/Jr\.?\s*L1|teaching hours|club restart/i.test(journey));
 assert.ok(!/finals? (?:field|teams?|entrants?)\s*(?:of|:)?\s*\d+/i.test(journey));
 
