@@ -8,6 +8,7 @@ const page = path.join(root, "projects", "thunder-v2-flight-evidence", "index.ht
 const html = fs.readFileSync(page, "utf8");
 const css = fs.readFileSync(path.join(root, "assets", "css", "flight-data-presentation.css"), "utf8");
 const home = fs.readFileSync(path.join(root, "index.html"), "utf8");
+const hprPage = fs.readFileSync(path.join(root, "projects", "thunder-v2-hpr-flight", "index.html"), "utf8");
 
 function all(pattern) {
   return [...html.matchAll(pattern)].map((match) => match[1]);
@@ -25,6 +26,8 @@ assert.equal(new Set(ids).size, ids.length, "Duplicate element IDs");
 assert.equal((html.match(/<h1\b/g) || []).length, 1, "Exactly one H1");
 assert.equal((html.match(/<main\b/g) || []).length, 1, "Exactly one main");
 assert.match(html, /name="robots" content="noindex, nofollow"/);
+assert.match(html, /Linked from Thunder V2 case study · noindex/);
+assert.match(html, /href="\.\.\/thunder-v2-hpr-flight\/index\.html"/);
 assert.match(html, /Thunder V2 — Flight Evidence &amp; Simulation Snapshots/);
 
 const sections = [
@@ -116,6 +119,7 @@ assert.ok(!/href="[^"]*\.(?:ork|mp4|png|jpe?g)(?:[?#][^"]*)?"/i.test(html), "Raw
 assert.ok(!/file:\/\/|[A-Z]:\\/i.test(html), "Private local paths must not appear");
 assert.ok(!/%/.test(html), "Accuracy percentages must not be presented");
 assert.ok(!home.includes("thunder-v2-flight-evidence"), "Homepage must not link the evidence page");
+assert.match(hprPage, /href="\.\.\/thunder-v2-flight-evidence\/index\.html"/);
 assert.equal((html.match(/<section class="case-section"/g) || []).length, 6);
 assert.match(css, /\.readout-grid/);
 assert.match(css, /\.is-anomalous/);
