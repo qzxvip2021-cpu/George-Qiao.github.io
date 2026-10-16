@@ -93,7 +93,12 @@ async function verifyRoute(page, base, route, width, scheme, screenshots, label)
   assert.match(heading, route.heading, label + ": page title");
   assert.equal(await page.locator("html").getAttribute("data-theme"), scheme, label + ": theme");
 
-  const robots = await page.locator('meta[name="robots"]').getAttribute("content").catch(() => null);
+  const robotsMeta = page.locator('meta[name="robots"]');
+  // Public indexable pages have no robots meta. Avoid Playwright's 30-second
+  // locator timeout before treating an absent optional tag as null.
+  const robots = (await robotsMeta.count())
+    ? await robotsMeta.first().getAttribute("content")
+    : null;
   if (route.noindex) {
     assert.match(robots || "", /noindex/i, label + ": evidence noindex");
   } else {
