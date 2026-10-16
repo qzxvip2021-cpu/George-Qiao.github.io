@@ -1,0 +1,338 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="color-scheme" content="dark light" />
+    <meta name="robots" content="noindex, nofollow" />
+    <meta name="theme-color" content="#101117" />
+    <title>Thunder V2 — Flight Evidence &amp; Simulation Snapshots | George Qiao</title>
+    <meta
+      name="description"
+      content="An evidence-scoped presentation of Thunder V2 instrument readouts, saved simulation snapshots, and their limitations."
+    />
+    <link rel="icon" type="image/svg+xml" href="../../assets/ele/favicon.svg" />
+    <link rel="stylesheet" href="../../assets/css/style.css" />
+    <link rel="stylesheet" href="../../assets/css/case-study.css" />
+    <link rel="stylesheet" href="../../assets/css/flight-data-presentation.css" />
+    <script src="../../assets/js/script.js" defer></script>
+  </head>
+  <body>
+    <a class="skip-link" href="#main-content">Skip to content</a>
+    <header class="site-header">
+      <nav class="nav container" aria-label="Main navigation">
+        <a
+          class="brand"
+          href="../../index.html#home"
+          aria-label="George Qiao, home"
+        >
+          <span class="monogram" aria-hidden="true">GQ<span>·</span></span>
+          <span class="brand-name">George Qiao</span>
+        </a>
+        <div class="nav-actions">
+          <button
+            class="theme-toggle"
+            id="themeToggle"
+            type="button"
+            aria-label="Switch to light theme"
+            hidden
+          ><span aria-hidden="true">◐</span></button>
+          <button
+            class="menu-toggle"
+            id="menuToggle"
+            type="button"
+            aria-controls="navMenu"
+            aria-expanded="false"
+            hidden
+          >Menu <span aria-hidden="true">+</span></button>
+        </div>
+        <ul class="nav-menu" id="navMenu">
+          <li><a href="../../index.html#about">About</a></li>
+          <li><a href="../../index.html#projects">Projects</a></li>
+          <li><a href="../../index.html#contact">Contact</a></li>
+        </ul>
+      </nav>
+    </header>
+
+    <main id="main-content" class="case-main" tabindex="-1">
+      <div class="container">
+        <nav class="case-breadcrumb" aria-label="Breadcrumb">
+          <ol>
+            <li><a href="../../index.html#projects">Projects</a></li>
+            <li aria-current="page">Thunder V2 flight evidence</li>
+          </ol>
+        </nav>
+
+        <div class="case-notice flight-notice" role="note">
+          <strong>Evidence types remain separate.</strong>
+          <span>An instrument display is not a verified physical measurement; a saved simulation is not a verified preflight prediction.</span>
+        </div>
+
+        <header class="case-hero flight-hero">
+          <p class="eyebrow">HIGH-POWER ROCKETRY / EVIDENCE REVIEW</p>
+          <h1 id="case-title">Thunder V2 — Flight Evidence &amp; Simulation Snapshots</h1>
+          <p class="case-lead">
+            A readable record of an AltimeterTwo displayed summary, two saved
+            OpenRocket simulation snapshots, the reported flight configuration,
+            and the boundaries that keep those evidence types from being conflated.
+          </p>
+          <a class="text-link case-back" href="../thunder-v2-hpr-flight/index.html">
+            <svg
+              class="direction-icon"
+              viewBox="0 0 16 16"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="1.5"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              aria-hidden="true"
+              focusable="false"
+            ><path d="M12 8H4m4-4-4 4 4 4" /></svg>
+            Back to Thunder V2 case study
+          </a>
+        </header>
+
+        <dl class="case-facts panel" aria-label="Evidence summary">
+          <div><dt>Readout source</dt><dd>AltimeterTwo original display video</dd></div>
+          <div><dt>Displayed fields</dt><dd>10 summary readouts</dd></div>
+          <div><dt>Simulation records</dt><dd>Two saved H219T Simulation 4 snapshots</dd></div>
+          <div><dt>Visibility</dt><dd>Linked from Thunder V2 case study · noindex</dd></div>
+        </dl>
+
+        <div class="case-layout">
+          <article class="case-article" aria-labelledby="case-title">
+            <section class="case-section" id="evidence-overview" aria-labelledby="evidence-overview-title">
+              <p class="eyebrow">01 / Evidence map</p>
+              <h2 id="evidence-overview-title">Evidence Overview</h2>
+              <p>
+                This page presents four evidence classes without treating them as
+                interchangeable. The data cards report approved values exactly as
+                supplied; they do not create a measured curve, a reconstructed event
+                timeline, or a validated simulation-to-flight comparison.
+              </p>
+              <div class="evidence-key" role="list" aria-label="Evidence classes">
+                <div class="panel" role="listitem">
+                  <span class="evidence-label video-confirmed">Video-confirmed instrument readout</span>
+                  <h3>Displayed summary</h3>
+                  <p>Confirms what the AltimeterTwo display showed in the original video, not measurement accuracy.</p>
+                </div>
+                <div class="panel" role="listitem">
+                  <span class="evidence-label simulated">Saved simulation result</span>
+                  <h3>Model snapshot</h3>
+                  <p>Records a saved OpenRocket output, not a verified preflight prediction or an as-flown match.</p>
+                </div>
+                <div class="panel" role="listitem">
+                  <span class="evidence-label reported">User-reported configuration</span>
+                  <h3>Flight setup account</h3>
+                  <p>Preserves reported motor, delay, parachute, and JLCR details without claiming original setup evidence.</p>
+                </div>
+                <div class="panel" role="listitem">
+                  <span class="evidence-label unavailable">Unverified or unavailable evidence</span>
+                  <h3>Open questions</h3>
+                  <p>Keeps accuracy, event identification, launch linkage, and recovery timing unresolved.</p>
+                </div>
+              </div>
+            </section>
+
+            <section class="case-section" id="instrument-readout" aria-labelledby="instrument-readout-title">
+              <p class="eyebrow">02 / Displayed summary</p>
+              <h2 id="instrument-readout-title">AltimeterTwo Instrument Readout</h2>
+              <div class="source-strip panel">
+                <span class="evidence-label video-confirmed">Video-confirmed instrument readout</span>
+                <p><strong>Source:</strong> AltimeterTwo original display video. The approved transcription is presented here; the raw video is not embedded or linked.</p>
+              </div>
+              <dl class="readout-grid" aria-label="Ten AltimeterTwo displayed summary fields">
+                <div class="readout-card panel" data-readout="peak-altitude">
+                  <dt>Peak Altitude</dt>
+                  <dd><strong>2,329</strong><span>ft</span></dd>
+                </div>
+                <div class="readout-card panel" data-readout="top-speed">
+                  <dt>Top Speed</dt>
+                  <dd><strong>486</strong><span>mph</span></dd>
+                </div>
+                <div class="readout-card panel" data-readout="thrust-time">
+                  <dt>Thrust Time</dt>
+                  <dd><strong>1.5</strong><span>s</span></dd>
+                </div>
+                <div class="readout-card panel" data-readout="peak-acceleration">
+                  <dt>Peak Acceleration</dt>
+                  <dd><strong>28.4</strong><span>G</span></dd>
+                </div>
+                <div class="readout-card panel" data-readout="average-acceleration">
+                  <dt>Average Acceleration</dt>
+                  <dd><strong>21.1</strong><span>G</span></dd>
+                </div>
+                <div class="readout-card panel" data-readout="coast-apogee">
+                  <dt>Coast–Apogee</dt>
+                  <dd><strong>9.1</strong><span>s</span></dd>
+                </div>
+                <div class="readout-card panel is-anomalous" data-readout="apogee-ejection">
+                  <dt>Apogee–Ejection</dt>
+                  <dd><strong>−9.0</strong><span>s</span></dd>
+                  <p class="anomaly-warning"><strong>Anomaly warning:</strong> −9.0 s is the displayed value. The negative event time and event classification are unresolved; it is not evidence of an actual ejection time.</p>
+                </div>
+                <div class="readout-card panel is-anomalous" data-readout="ejection-altitude">
+                  <dt>Ejection Altitude</dt>
+                  <dd><strong>389</strong><span>ft</span></dd>
+                  <p class="anomaly-warning"><strong>Anomaly warning:</strong> 389 ft is a displayed instrument field, not proof that an actual ejection occurred at 389 ft.</p>
+                </div>
+                <div class="readout-card panel is-anomalous" data-readout="descent">
+                  <dt>Descent</dt>
+                  <dd><strong>1</strong><span>mph</span></dd>
+                  <p class="anomaly-warning"><strong>Anomaly warning:</strong> 1 mph is a displayed instrument field, not proof of an actual 1 mph descent.</p>
+                </div>
+                <div class="readout-card panel" data-readout="flight-duration">
+                  <dt>Flight Duration</dt>
+                  <dd><strong>152.7</strong><span>s</span></dd>
+                </div>
+              </dl>
+              <div class="case-evidence panel evidence-boundary">
+                <strong>Readout boundary</strong>
+                <p>
+                  These values establish what the instrument displayed. They do not
+                  independently verify physical measurement accuracy, identify actual
+                  flight events, or link the readout to an independently documented launch.
+                </p>
+              </div>
+            </section>
+
+            <section class="case-section" id="simulation-snapshots" aria-labelledby="simulation-snapshots-title">
+              <p class="eyebrow">03 / Saved models</p>
+              <h2 id="simulation-snapshots-title">Saved OpenRocket Simulation Snapshots</h2>
+              <p>
+                The two records below are presented separately because they are not
+                identical configurations. Each is a saved result labeled H219T
+                Simulation 4, not a verified preflight prediction.
+              </p>
+              <div class="snapshot-grid" aria-label="Saved H219T Simulation 4 results">
+                <article class="snapshot-card panel">
+                  <span class="evidence-label simulated">Saved simulation result</span>
+                  <h3>雷霆V2.ork</h3>
+                  <p class="snapshot-run">H219T Simulation 4</p>
+                  <dl>
+                    <div><dt>Saved altitude</dt><dd>2,322.55 ft</dd></div>
+                    <div><dt>Simulation total mass</dt><dd>1.081 kg</dd></div>
+                    <div><dt>Simulated delay</dt><dd>14 s</dd></div>
+                  </dl>
+                  <p class="snapshot-status">Not a Verified Preflight Prediction</p>
+                </article>
+                <article class="snapshot-card panel">
+                  <span class="evidence-label simulated">Saved simulation result</span>
+                  <h3>雷霆V2(1).ork</h3>
+                  <p class="snapshot-run">H219T Simulation 4</p>
+                  <dl>
+                    <div><dt>Saved altitude</dt><dd>2,328.08 ft</dd></div>
+                    <div><dt>Simulation total mass</dt><dd>1.068 kg</dd></div>
+                    <div><dt>Simulated delay</dt><dd>14 s</dd></div>
+                  </dl>
+                  <p class="snapshot-status">Not a Verified Preflight Prediction</p>
+                </article>
+              </div>
+              <div class="case-evidence panel evidence-boundary">
+                <strong>Comparison boundary</strong>
+                <p>
+                  The saved models are not identical configurations. The verified
+                  snapshot facts presented here are their different total masses, their
+                  two saved altitude results, and their shared 14 s simulated delay.
+                  The confirmed preflight version is unknown, other configuration
+                  differences are not inferred, and no accuracy, error percentage, or
+                  simulation-to-flight delta is calculated.
+                </p>
+              </div>
+            </section>
+
+            <section class="case-section" id="configuration-context" aria-labelledby="configuration-context-title">
+              <p class="eyebrow">04 / Reported setup</p>
+              <h2 id="configuration-context-title">User-Reported Configuration Context</h2>
+              <p>
+                The reported flight configuration remains a third evidence class. It
+                is useful context, but it is not substituted for the 14 s settings in
+                the saved models or presented as independently reviewed setup evidence.
+              </p>
+              <div class="configuration-grid" role="list" aria-label="User-reported flight configuration">
+                <div class="panel" role="listitem">
+                  <span class="evidence-label reported">User-reported configuration</span>
+                  <h3>Motor and actual setting</h3>
+                  <p>AeroTech H219T-14A, reported as adjusted with UDDT to 10 seconds.</p>
+                </div>
+                <div class="panel" role="listitem">
+                  <span class="evidence-label reported">User-reported configuration</span>
+                  <h3>Parachute</h3>
+                  <p>30-inch parachute.</p>
+                </div>
+                <div class="panel" role="listitem">
+                  <span class="evidence-label reported">User-reported configuration</span>
+                  <h3>JLCR</h3>
+                  <p>No JLCR used on this flight.</p>
+                </div>
+              </div>
+            </section>
+
+            <section class="case-section" id="evidence-limitations" aria-labelledby="evidence-limitations-title">
+              <p class="eyebrow">05 / Boundaries</p>
+              <h2 id="evidence-limitations-title">Evidence Limitations</h2>
+              <div class="boundary-list" role="list" aria-label="Evidence limitations by source type">
+                <div class="panel" role="listitem">
+                  <span class="evidence-label video-confirmed">Video-confirmed instrument readout</span>
+                  <h3>What the display showed</h3>
+                  <p>Supports the ten displayed values. It does not independently establish sensor accuracy, physical event identity, or launch linkage.</p>
+                </div>
+                <div class="panel" role="listitem">
+                  <span class="evidence-label simulated">Saved simulation result</span>
+                  <h3>What the model saved</h3>
+                  <p>Supports the two named snapshot results, masses, and 14 s delays. It does not identify the verified preflight model or reproduce the as-flown configuration.</p>
+                </div>
+                <div class="panel" role="listitem">
+                  <span class="evidence-label reported">User-reported configuration</span>
+                  <h3>What was reported</h3>
+                  <p>Supports the H219T-14A adjusted to 10 seconds, 30-inch parachute, and no-JLCR account. Original setup evidence is not presented here.</p>
+                </div>
+                <div class="panel" role="listitem">
+                  <span class="evidence-label unavailable">Unverified or unavailable evidence</span>
+                  <h3>What remains unresolved</h3>
+                  <p>Measurement accuracy, event classification, negative event timing, recovery timeline, verified preflight version, and continuous measured flight data remain unverified or unavailable.</p>
+                </div>
+              </div>
+            </section>
+
+            <section class="case-section" id="source-references" aria-labelledby="source-references-title">
+              <p class="eyebrow">06 / References</p>
+              <h2 id="source-references-title">Source References</h2>
+              <div class="reference-panel panel">
+                <ul>
+                  <li><strong>AltimeterTwo original display video:</strong> source label for the approved displayed-summary transcription; the raw video is not uploaded or linked.</li>
+                  <li><strong>雷霆V2.ork:</strong> user-approved display label for one saved H219T Simulation 4 snapshot; it is not a download link.</li>
+                  <li><strong>雷霆V2(1).ork:</strong> user-approved display label for the second saved H219T Simulation 4 snapshot; it is not a download link.</li>
+                  <li><strong>User-reported configuration:</strong> H219T-14A adjusted to 10 seconds, 30-inch parachute, and no JLCR.</li>
+                </ul>
+                <p>No raw video, screenshots, OpenRocket files, private paths, or private conversation links are published on this page.</p>
+              </div>
+            </section>
+          </article>
+
+          <aside class="case-aside">
+            <nav class="case-toc panel" aria-label="On this page">
+              <h2>On this page</h2>
+              <ol>
+                <li><a href="#evidence-overview">Evidence overview</a></li>
+                <li><a href="#instrument-readout">Instrument readout</a></li>
+                <li><a href="#simulation-snapshots">Simulation snapshots</a></li>
+                <li><a href="#configuration-context">Configuration context</a></li>
+                <li><a href="#evidence-limitations">Evidence limitations</a></li>
+                <li><a href="#source-references">Source references</a></li>
+              </ol>
+            </nav>
+          </aside>
+        </div>
+      </div>
+    </main>
+    <footer class="container footer">
+      <a class="brand" href="../../index.html#home">
+        <span class="monogram" aria-hidden="true">GQ<span>·</span></span>
+        <span class="sr-only">George Qiao, back to home</span>
+      </a>
+      <p>Perfection isn't the goal. Precision is.</p>
+      <span>© <span id="currentYear">2026</span> George Qiao</span>
+    </footer>
+  </body>
+</html>

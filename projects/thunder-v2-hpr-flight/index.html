@@ -1,0 +1,422 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="color-scheme" content="dark light" />
+    <meta name="theme-color" content="#101117" />
+    <title>Thunder V2 HPR Flight Experience | George Qiao</title>
+    <meta
+      name="description"
+      content="Thunder V2 high-power rocketry experience, with user-reported flight configuration and a video-confirmed AltimeterTwo display reading."
+    />
+    <link rel="icon" type="image/svg+xml" href="../../assets/ele/favicon.svg" />
+    <link rel="stylesheet" href="../../assets/css/style.css" />
+    <link rel="stylesheet" href="../../assets/css/case-study.css" />
+    <link rel="stylesheet" href="../../assets/css/hpr-flight-case-study.css" />
+    <script src="../../assets/js/script.js" defer></script>
+  </head>
+  <body>
+    <a class="skip-link" href="#main-content">Skip to content</a>
+    <header class="site-header">
+      <nav class="nav container" aria-label="Main navigation">
+        <a
+          class="brand"
+          href="../../index.html#home"
+          aria-label="George Qiao, home"
+        >
+          <span class="monogram" aria-hidden="true">GQ<span>·</span></span>
+          <span class="brand-name">George Qiao</span>
+        </a>
+        <div class="nav-actions">
+          <button
+            class="theme-toggle"
+            id="themeToggle"
+            type="button"
+            aria-label="Switch to light theme"
+            hidden
+          ><span aria-hidden="true">◐</span></button>
+          <button
+            class="menu-toggle"
+            id="menuToggle"
+            type="button"
+            aria-controls="navMenu"
+            aria-expanded="false"
+            hidden
+          >Menu <span aria-hidden="true">+</span></button>
+        </div>
+        <ul class="nav-menu" id="navMenu">
+          <li><a href="../../index.html#about">About</a></li>
+          <li><a href="../../index.html#projects">Projects</a></li>
+          <li><a href="../../index.html#contact">Contact</a></li>
+        </ul>
+      </nav>
+    </header>
+
+    <main id="main-content" class="case-main" tabindex="-1">
+      <div class="container">
+        <nav class="case-breadcrumb" aria-label="Breadcrumb">
+          <ol>
+            <li><a href="../../index.html#projects">Projects</a></li>
+            <li aria-current="page">Thunder V2 HPR Flight Experience</li>
+          </ol>
+        </nav>
+
+        <div class="case-notice hpr-notice" role="note">
+          <strong>Evidence-scoped flight narrative.</strong>
+          <span>User-reported configuration; original AltimeterTwo display video confirms a 2,329 ft screen reading, not independent measurement accuracy or launch linkage.</span>
+        </div>
+
+        <header class="case-hero hpr-hero">
+          <p class="eyebrow">HIGH-POWER ROCKETRY / FLIGHT EXPERIENCE</p>
+          <h1 id="case-title">Thunder V2</h1>
+          <p class="case-lead">
+            A technical account of my high-power rocket flight experience,
+            separating user-reported configuration from video-confirmed
+            instrument readouts and still-unverified launch details.
+          </p>
+          <a class="text-link case-back" href="../../index.html#projects">
+            <svg
+              class="direction-icon"
+              viewBox="0 0 16 16"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="1.5"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              aria-hidden="true"
+              focusable="false"
+            ><path d="M12 8H4m4-4-4 4 4 4" /></svg>
+            Back to projects
+          </a>
+        </header>
+
+        <dl class="case-facts panel" aria-label="Project facts">
+          <div><dt>Focus</dt><dd>High-power rocket flight experience</dd></div>
+          <div><dt>Evidence basis</dt><dd>Reported setup; video-confirmed display</dd></div>
+          <div><dt>Motor</dt><dd>User-reported · AeroTech H219T-14A</dd></div>
+          <div><dt>Peak altitude</dt><dd>AltimeterTwo display · 2,329 ft (video-confirmed)</dd></div>
+        </dl>
+
+        <div class="case-layout">
+          <article class="case-article" aria-labelledby="case-title">
+            <section class="case-section" id="overview" aria-labelledby="overview-title">
+              <p class="eyebrow">01 / Overview</p>
+              <h2 id="overview-title">Rocket Overview &amp; Design Objectives</h2>
+              <p>
+                Thunder V2 is the rocket project documented here. The current record
+                supports a flight-experience narrative, but it does not provide a
+                complete, approved as-flown configuration package. The objectives below
+                are conservative engineering inferences from the project and reported
+                flight context, not documented acceptance criteria or proven outcomes.
+              </p>
+              <div class="case-evidence panel">
+                <strong>My Role &amp; Contributions</strong>
+                <p>
+                  I participated across the engineering cycle. I contributed to rocket
+                  structural design and CAD; fabrication and assembly of 3D-printed
+                  components; motor selection and delay adjustment; parachute and
+                  recovery-system configuration; launch-day preparation and field launch
+                  operations; and post-flight recovery inspection and analysis of the
+                  available flight-data summary. These statements describe my participation
+                  and do not imply sole ownership of all project work or establish technical
+                  outcomes that remain unsupported by original records.
+                </p>
+              </div>
+              <div class="hpr-grid objective-grid" aria-label="Inferred design objectives">
+                <div class="panel">
+                  <span class="evidence-label inferred">Inferred objective</span>
+                  <h3>Coherent configuration</h3>
+                  <p>Define a high-power rocket configuration with propulsion and recovery choices considered together.</p>
+                </div>
+                <div class="panel">
+                  <span class="evidence-label inferred">Inferred objective</span>
+                  <h3>Recoverable flight</h3>
+                  <p>Plan for a recoverable flight while keeping deployment timing and descent behavior open to evidence.</p>
+                </div>
+                <div class="panel">
+                  <span class="evidence-label inferred">Inferred objective</span>
+                  <h3>Altitude record</h3>
+                  <p>Capture a peak-altitude reading without treating one value as a complete measured flight profile.</p>
+                </div>
+              </div>
+            </section>
+
+            <section class="case-section" id="configuration" aria-labelledby="configuration-title">
+              <p class="eyebrow">02 / Vehicle</p>
+              <h2 id="configuration-title">Rocket Configuration</h2>
+              <p>
+                Available records identify Thunder V2 and include a project-specific
+                OpenRocket file. Locating that file establishes the existence of a
+                design artifact only; Gate 0 did not establish an approved preflight
+                prediction or confirm that the digital model matched the flown vehicle.
+              </p>
+              <p>
+                I contributed to Thunder V2's structural design and CAD, and I
+                participated in fabricating and assembling 3D-printed components. The
+                available record does not establish materials, print parameters, exact
+                as-flown mass or dimensions, or structural-test results.
+              </p>
+              <div class="hpr-grid configuration-grid" role="list" aria-label="Configuration evidence status">
+                <div class="panel" role="listitem">
+                  <span class="evidence-label reported">Project record</span>
+                  <h3>Project identity</h3>
+                  <p>Thunder V2 is the rocket project associated with this flight account.</p>
+                </div>
+                <div class="panel" role="listitem">
+                  <span class="evidence-label located">Artifact located</span>
+                  <h3>Digital model</h3>
+                  <p>An OpenRocket file was found during evidence inventory; its prediction and as-flown fidelity are not approved.</p>
+                </div>
+                <div class="panel" role="listitem">
+                  <span class="evidence-label pending">Evidence gap</span>
+                  <h3>As-flown vehicle</h3>
+                  <p>Exact launch mass, dimensions, materials, component fit, and physical configuration remain undocumented here.</p>
+                </div>
+              </div>
+              <div class="case-evidence panel">
+                <strong>Scope boundary</strong>
+                <p>
+                  No flight-computer test history is attributed to Thunder V2, and no
+                  claim is made that a separate avionics project flew on this rocket.
+                </p>
+              </div>
+              <figure class="case-media panel project-photo configuration-photo">
+                <img
+                  src="../../assets/projects/thunder-v2/thunder-v2-nose-cone.jpg"
+                  alt="Black Thunder V2 nose cone displayed indoors."
+                  width="900"
+                  height="1600"
+                  loading="lazy"
+                  decoding="async"
+                />
+                <figcaption>Physical nose cone for Thunder V2.</figcaption>
+              </figure>
+            </section>
+
+            <section class="case-section" id="motor-recovery" aria-labelledby="motor-recovery-title">
+              <p class="eyebrow">03 / Flight setup</p>
+              <h2 id="motor-recovery-title">Motor &amp; Recovery Configuration</h2>
+              <p>
+                The following configuration details come from my account. They
+                are traceable conversation claims, not independently verified as-flown
+                measurements or findings from original setup documentation.
+              </p>
+              <p>
+                My participation included motor selection, setting the reported motor
+                delay with a UDDT, and configuring the parachute and recovery system.
+                The specific motor, delay, parachute, and JLCR details below remain
+                User-reported until original flight-specific evidence is reviewed.
+              </p>
+              <div class="reported-facts" role="list" aria-label="User-reported flight configuration">
+                <div class="panel" role="listitem">
+                  <span class="evidence-label reported">User-reported</span>
+                  <small>Motor</small>
+                  <strong>AeroTech H219T-14A</strong>
+                </div>
+                <div class="panel" role="listitem">
+                  <span class="evidence-label reported">User-reported</span>
+                  <small>Delay</small>
+                  <strong>Adjusted with UDDT to 10 seconds</strong>
+                </div>
+                <div class="panel" role="listitem">
+                  <span class="evidence-label reported">User-reported</span>
+                  <small>Parachute</small>
+                  <strong>30-inch parachute</strong>
+                </div>
+                <div class="panel" role="listitem">
+                  <span class="evidence-label reported">User-reported</span>
+                  <small>JLCR</small>
+                  <strong>No JLCR used on this flight</strong>
+                </div>
+              </div>
+              <div class="case-evidence panel evidence-boundary">
+                <span class="evidence-label pending">Original evidence pending</span>
+                <p>
+                  Flight-specific motor packaging, delay-setting evidence, recovery
+                  packing records, and setup photographs have not been reviewed. These
+                  details do not establish the deployment sequence or recovery outcome.
+                </p>
+              </div>
+            </section>
+
+            <section class="case-section" id="flight-preparation-launch" aria-labelledby="flight-preparation-launch-title">
+              <p class="eyebrow">04 / Field operations</p>
+              <h2 id="flight-preparation-launch-title">Flight Preparation &amp; Launch</h2>
+              <p>
+                I participated in prelaunch preparation and field launch operations for
+                the reported flight. This confirmed participation does not establish a
+                complete preparation timeline, checklist completion, inspection sign-off,
+                safety approval, launch date, launch location, weather, exact launch mass,
+                or motor fit.
+              </p>
+              <div class="preparation-grid">
+                <div class="panel">
+                  <span class="evidence-label reported">Reported setup</span>
+                  <h3>Available account</h3>
+                  <ul>
+                    <li>H219T-14A motor selection</li>
+                    <li>UDDT adjustment to a reported 10-second delay</li>
+                    <li>30-inch parachute and no JLCR</li>
+                  </ul>
+                </div>
+                <div class="panel">
+                  <span class="evidence-label pending">Not established</span>
+                  <h3>Flight-specific record</h3>
+                  <ul>
+                    <li>Launch date, site, conditions, and personnel</li>
+                    <li>Completed preparation or safety checklist</li>
+                    <li>As-flown dimensions, mass, fit, and recovery sequence</li>
+                  </ul>
+                </div>
+              </div>
+              <figure class="case-media panel project-photo launch-photo">
+                <img
+                  src="../../assets/projects/thunder-v2/launch-event-team.jpg"
+                  alt="Three teammates holding a model rocket outdoors at a launch event."
+                  width="1600"
+                  height="1067"
+                  loading="lazy"
+                  decoding="async"
+                />
+                <figcaption>At a model rocket launch event with teammates.</figcaption>
+              </figure>
+            </section>
+
+            <section class="case-section" id="results" aria-labelledby="results-title">
+              <p class="eyebrow">05 / Instrument readout</p>
+              <h2 id="results-title">AltimeterTwo Display Results</h2>
+              <p>
+                I participated in reviewing and analyzing the AltimeterTwo
+                summary. The original display video has been reviewed and shows
+                a peak altitude reading of 2,329 ft. This confirms the displayed
+                value, not the instrument's measurement accuracy, its installation,
+                or its association with an independently documented launch.
+              </p>
+              <div class="result-card panel" aria-label="Video-confirmed AltimeterTwo screen reading">
+                <span class="evidence-label located">Video-confirmed instrument readout</span>
+                <strong class="result-number">2,329 <span>ft</span></strong>
+                <p>AltimeterTwo original display video · displayed peak altitude only; measurement accuracy and specific launch linkage remain unverified</p>
+              </div>
+              <div class="case-evidence panel evidence-boundary">
+                <strong>Result boundary</strong>
+                <p>
+                  No continuous measured curve is presented. The located OpenRocket
+                  artifact is not used as an approved preflight prediction, and no
+                  prediction-accuracy calculation is made. Video-confirmed but anomalous
+                  ejection and descent fields are not used to establish actual flight events.
+                </p>
+              </div>
+              <a class="text-link" href="../thunder-v2-flight-evidence/index.html"
+                >View full AltimeterTwo readouts and simulation snapshots
+                <svg
+                  class="direction-icon"
+                  viewBox="0 0 16 16"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="1.5"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  aria-hidden="true"
+                  focusable="false"
+                ><path d="M4 12 12 4M6 4h6v6" /></svg></a
+              >
+            </section>
+
+            <section class="case-section" id="recovery-observations" aria-labelledby="recovery-observations-title">
+              <p class="eyebrow">06 / Recovery evidence</p>
+              <h2 id="recovery-observations-title">Recovery Observations &amp; Limitations</h2>
+              <p>
+                I participated in post-flight recovery inspection. Original inspection
+                records and specific outcomes have not been reviewed. The current
+                evidence also supports my recovery-configuration report: a
+                30-inch parachute and no JLCR. It does not support a factual reconstruction
+                of deployment timing, descent speed, event sequence, landing condition,
+                or inspection findings.
+              </p>
+              <div class="hpr-grid recovery-grid" role="list" aria-label="Recovery evidence limits">
+                <div class="panel" role="listitem">
+                  <span class="evidence-label reported">User-reported</span>
+                  <h3>Recovery hardware</h3>
+                  <p>30-inch parachute; no JLCR used on this flight.</p>
+                </div>
+                <div class="panel" role="listitem">
+                  <span class="evidence-label limited">Uncertain metrics</span>
+                  <h3>Device summary</h3>
+                  <p>The display video confirms ejection and descent readouts, but their event classification is unresolved; they do not establish actual deployment timing or descent speed.</p>
+                </div>
+                <div class="panel" role="listitem">
+                  <span class="evidence-label pending">Evidence gap</span>
+                  <h3>Observed outcome</h3>
+                  <p>No diagnosis or claim of recovery success, damage state, or event timing is made.</p>
+                </div>
+              </div>
+            </section>
+
+            <section class="case-section" id="lessons" aria-labelledby="lessons-title">
+              <p class="eyebrow">07 / Reflection</p>
+              <h2 id="lessons-title">Engineering Challenges &amp; Lessons Learned</h2>
+              <p>
+                Working across design, fabrication, flight operations, recovery
+                inspection, and data review gave me a connected view of the project
+                while also showing where the surviving evidence limits this account.
+              </p>
+              <ul class="lesson-list">
+                <li><strong>CAD must stay connected to physical work.</strong> Participating in structural CAD and in fabricating and assembling 3D-printed components reinforced for me that a digital model and an as-built configuration are different records; the current evidence does not prove their exact equivalence.</li>
+                <li><strong>Flight configuration is a coupled decision.</strong> My participation in motor selection, delay adjustment, and parachute and recovery-system configuration highlighted how those choices belong in one traceable as-flown record, without implying that deployment timing or recovery performance was independently verified.</li>
+                <li><strong>Operations need contemporaneous evidence.</strong> Taking part in launch-day preparation and field launch operations showed me the value of preserving flight-specific setup records instead of reconstructing them later from recollection.</li>
+                <li><strong>A summary is not a complete flight profile.</strong> Reviewing the original AltimeterTwo display video confirmed what the device showed, but the displayed peak altitude cannot establish continuous ascent, ejection, descent, or recovery dynamics.</li>
+              </ul>
+            </section>
+
+            <section class="case-section" id="next-steps-references" aria-labelledby="next-steps-references-title">
+              <p class="eyebrow">08 / Outlook</p>
+              <h2 id="next-steps-references-title">Next Steps &amp; Evidence References</h2>
+              <ol class="next-step-list">
+                <li>Match the reviewed AltimeterTwo display video to a specific launch using flight records, device identification, and any contemporaneous notes.</li>
+                <li>Obtain a flight card or launch log covering date, location, motor, delay setting, and safety review.</li>
+                <li>Document the as-flown vehicle and recovery setup with approved photographs, dimensions, mass, and packing notes.</li>
+                <li>Identify and approve the exact preflight OpenRocket version before any simulation-to-flight comparison.</li>
+                <li>Add recovery and post-flight inspection notes without inferring unsupported event timing.</li>
+              </ol>
+              <div class="reference-panel panel">
+                <h3>Current evidence basis</h3>
+                <ul>
+                  <li>Private conversation record: source of user-reported motor, delay, parachute, JLCR, and flight attribution details.</li>
+                  <li>Original AltimeterTwo display video: confirms the 2,329 ft screen reading, without independently verifying measurement accuracy or launch linkage.</li>
+                  <li>Gate 0 evidence inventory: records that a Thunder V2 OpenRocket artifact was located, not that its prediction was approved.</li>
+                  <li>Outstanding records requested by type: contemporaneous written record, flight card or launch log, flight-specific setup images, and recovery inspection notes.</li>
+                </ul>
+                <p>Private links, local paths, raw project files, and unapproved photographs are intentionally not published here.</p>
+              </div>
+            </section>
+          </article>
+
+          <aside class="case-aside">
+            <nav class="case-toc panel" aria-label="On this page">
+              <h2>On this page</h2>
+              <ol>
+                <li><a href="#overview">Overview &amp; objectives</a></li>
+                <li><a href="#configuration">Rocket configuration</a></li>
+                <li><a href="#motor-recovery">Motor &amp; recovery</a></li>
+                <li><a href="#flight-preparation-launch">Preparation &amp; launch</a></li>
+                <li><a href="#results">Instrument readout</a></li>
+                <li><a href="#recovery-observations">Recovery limits</a></li>
+                <li><a href="#lessons">Lessons learned</a></li>
+                <li><a href="#next-steps-references">Next steps &amp; references</a></li>
+              </ol>
+            </nav>
+          </aside>
+        </div>
+      </div>
+    </main>
+    <footer class="container footer">
+      <a class="brand" href="../../index.html#home">
+        <span class="monogram" aria-hidden="true">GQ<span>·</span></span>
+        <span class="sr-only">George Qiao, back to home</span>
+      </a>
+      <p>Perfection isn't the goal. Precision is.</p>
+      <span>© <span id="currentYear">2026</span> George Qiao</span>
+    </footer>
+  </body>
+</html>

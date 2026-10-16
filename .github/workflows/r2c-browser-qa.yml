@@ -1,0 +1,46 @@
+name: R2-C Browser QA (test-only)
+
+on:
+  pull_request:
+    types: [opened, synchronize, reopened]
+    branches: [v2/integration, main]
+    paths:
+      - index.html
+      - 'assets/**'
+      - 'projects/**'
+      - tests/r2c-browser-qa.cjs
+      - .github/workflows/r2c-browser-qa.yml
+
+permissions:
+  contents: read
+
+jobs:
+  browser-qa:
+    name: V2 Chromium root/subpath smoke
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    steps:
+      - name: Checkout PR merge candidate
+        uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - name: Use Node.js 22
+        uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+      - name: Install test-only Playwright
+        run: npm install --no-save --no-package-lock playwright@1.55.0
+      - name: Install Chromium for Playwright
+        run: npx playwright install --with-deps chromium
+      - name: Execute R2-C browser smoke matrix
+        env:
+          R2C_BASE_SHA: ${{ github.event.pull_request.base.sha }}
+        run: node tests/r2c-browser-qa.cjs
+      - name: Save visual QA screenshots
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: r2c-browser-qa-screenshots
+          path: qa-artifacts/r2c/
+          if-no-files-found: ignore
+          retention-days: 7

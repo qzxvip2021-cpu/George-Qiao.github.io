@@ -1,0 +1,234 @@
+/* Shared V2 case-study layout. Uses the existing V1 design tokens and nav. */
+.case-main {
+  padding: 28px 0 96px;
+}
+.case-breadcrumb ol {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  color: var(--muted);
+  font-size: 12px;
+}
+.case-breadcrumb li + li::before {
+  content: "/";
+  margin-right: 10px;
+  color: var(--accent);
+}
+.case-breadcrumb a:hover {
+  color: var(--text);
+}
+.case-notice {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 16px;
+  padding: 13px 16px;
+  margin-top: 30px;
+  border: 1px dashed var(--accent);
+  border-radius: 8px;
+  font-size: 12px;
+  color: var(--muted);
+}
+.case-notice strong {
+  color: var(--text);
+}
+.case-hero {
+  max-width: 830px;
+  margin: 64px 0 35px;
+}
+.case-hero h1 {
+  margin: 17px 0 26px;
+  font-size: clamp(42px, 6.2vw, 72px);
+  line-height: 1.08;
+  overflow-wrap: anywhere;
+}
+.case-lead {
+  font-size: clamp(16px, 2vw, 19px);
+  line-height: 1.8;
+  max-width: 750px;
+}
+.case-back {
+  margin-top: 25px;
+}
+.case-facts {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  padding: 25px 28px;
+  margin-bottom: 58px;
+  gap: 22px;
+}
+.case-facts > div {
+  min-width: 0;
+}
+.case-facts dt {
+  font-size: 10px;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-bottom: 10px;
+}
+.case-facts dd {
+  margin: 0;
+  font-size: 13px;
+  font-weight: 600;
+  overflow-wrap: anywhere;
+}
+.case-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 250px;
+  gap: clamp(30px, 6vw, 82px);
+  align-items: start;
+}
+.case-article {
+  min-width: 0;
+}
+.case-section {
+  scroll-margin-top: 115px;
+  margin-bottom: 72px;
+}
+.case-section .eyebrow {
+  margin-bottom: 15px;
+}
+.case-section h2 {
+  margin-bottom: 23px;
+  font-size: clamp(28px, 3vw, 36px);
+}
+.case-section p {
+  font-size: 15px;
+  line-height: 1.9;
+  overflow-wrap: anywhere;
+}
+.case-media {
+  overflow: hidden;
+  margin: 0 0 72px;
+}
+.case-media-slot {
+  background:
+    linear-gradient(90deg, var(--grid) 1px, transparent 1px),
+    linear-gradient(var(--grid) 1px, transparent 1px),
+    var(--diagram-fill);
+  background-size: 28px 28px;
+  aspect-ratio: 16 / 9;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: 22px;
+  gap: 8px;
+  color: var(--accent);
+  font: 11px ui-monospace, monospace;
+  letter-spacing: .09em;
+}
+.case-media-slot span + span {
+  font-size: 10px;
+  letter-spacing: 0;
+  color: var(--muted);
+}
+.case-media figcaption {
+  padding: 14px 20px 17px;
+  color: var(--muted);
+  font-size: 12px;
+  line-height: 1.7;
+}
+.case-evidence {
+  margin-top: 22px;
+  padding: 23px;
+}
+.case-evidence strong {
+  font-size: 13px;
+}
+.case-evidence p {
+  margin-top: 10px;
+  font-size: 13px;
+}
+.case-toc {
+  padding: 25px;
+  position: sticky;
+  top: 108px;
+}
+.case-toc h2 {
+  font-size: 14px;
+  font-weight: 650;
+  letter-spacing: 0;
+  margin-bottom: 18px;
+}
+.case-toc ol {
+  list-style: none;
+  display: grid;
+  gap: 12px;
+  margin: 0;
+  padding: 0;
+}
+.case-toc a {
+  font-size: 12px;
+  color: var(--muted);
+}
+.case-toc a:hover,
+.case-toc a:focus-visible {
+  color: var(--text);
+}
+@media (max-width: 900px) {
+  .case-layout {
+    grid-template-columns: minmax(0, 1fr) 205px;
+    gap: 28px;
+  }
+  .case-facts {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+@media (max-width: 760px) {
+  .case-main {
+    padding-top: 22px;
+  }
+  .case-hero {
+    margin: 40px 0 28px;
+  }
+  .case-hero h1 {
+    font-size: clamp(38px, 10vw, 56px);
+  }
+  .case-layout {
+    display: flex;
+    flex-direction: column;
+    gap: 28px;
+  }
+  .case-aside {
+    width: 100%;
+    order: -1;
+  }
+  .case-toc {
+    position: static;
+    padding: 20px;
+  }
+  .case-toc ol {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 10px 16px;
+  }
+  .case-article {
+    width: 100%;
+  }
+  .case-facts {
+    padding: 22px;
+    margin-bottom: 38px;
+    gap: 20px;
+  }
+  .case-section {
+    margin-bottom: 56px;
+  }
+  .case-media {
+    margin-bottom: 56px;
+  }
+}
+@media (max-width: 360px) {
+  .case-notice {
+    padding: 11px;
+  }
+  .case-facts {
+    grid-template-columns: 1fr;
+  }
+  .case-toc ol {
+    grid-template-columns: 1fr;
+  }
+}
