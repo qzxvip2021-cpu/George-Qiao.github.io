@@ -89,7 +89,8 @@ async function verifyRoute(page, base, route, width, scheme, screenshots, label)
   assert.equal(response.status(), 200, label + ": HTTP 200");
   assert.equal(await page.locator("h1").count(), 1, label + ": one H1");
   assert.equal(await page.locator("main").count(), 1, label + ": one main");
-  assert.match((await page.locator("h1").innerText()).trim(), route.heading, label + ": page title");
+  const heading = (await page.locator("h1").innerText()).replace(/\s+/g, " ").trim();
+  assert.match(heading, route.heading, label + ": page title");
   assert.equal(await page.locator("html").getAttribute("data-theme"), scheme, label + ": theme");
 
   const robots = await page.locator('meta[name="robots"]').getAttribute("content").catch(() => null);
