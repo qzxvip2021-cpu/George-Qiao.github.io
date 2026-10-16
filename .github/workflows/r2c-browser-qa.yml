@@ -5,6 +5,9 @@ on:
     types: [opened, synchronize, reopened]
     branches: [v2/integration]
     paths:
+      - index.html
+      - 'assets/**'
+      - 'projects/**'
       - tests/r2c-browser-qa.cjs
       - .github/workflows/r2c-browser-qa.yml
 
@@ -31,7 +34,7 @@ jobs:
         run: npx playwright install --with-deps chromium
       - name: Execute R2-C browser smoke matrix
         env:
-          R2C_BASE_SHA: c6610605639ed2adaaf54f676c7360f1aeb78e49
+          R2C_BASE_SHA: ${{ github.event.pull_request.base.sha }}
         run: node tests/r2c-browser-qa.cjs
       - name: Save visual QA screenshots
         if: always()
