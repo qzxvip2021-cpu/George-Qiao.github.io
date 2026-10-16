@@ -155,6 +155,12 @@ async function verifyRoute(page, base, route, width, scheme, screenshots, label)
       (base.includes(SUBPATH) ? "subpath" : "root") +
         "-" + route.id + "-" + width + "-" + scheme + ".png",
     );
+    // Lazy-image decoding scrolls the page. Capture from the document top,
+    // otherwise Chromium can paint sticky/fixed navigation at that scroll offset.
+    await page.evaluate(() => window.scrollTo({ top: 0, left: 0, behavior: "instant" }));
+    await page.waitForFunction(() => window.scrollY === 0);
+    await page.evaluate(() => new Promise((resolve) =>
+      requestAnimationFrame(() => requestAnimationFrame(resolve))));
     await page.screenshot({ path: filename, fullPage: true });
     screenshots.push(filename);
   }
