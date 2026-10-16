@@ -115,8 +115,16 @@ async function verifyRoute(page, base, route, width, scheme, screenshots, label)
       // These approved photos intentionally use loading="lazy". Trigger loading
       // by scrolling before waiting for decode, rather than treating offscreen
       // images as failed HTTP requests.
-      await image.scrollIntoViewIfNeeded();
-      await image.evaluate((img) => img.decode());
+      await image.scrollIntoViewIfNeeded({ timeout: 15000 });
+      await image.evaluate((img) => Promise.race([
+        img.decode(),
+        new Promise((_, reject) => setTimeout(
+          () => reject(new Error(
+            "Photo decode exceeded 12s: " + img.currentSrc +
+            " complete=" + img.complete + " width=" + img.naturalWidth
+          )), 12000
+        )),
+      ]));
       const state = await image.evaluate((img) => ({
         complete: img.complete,
         width: img.naturalWidth,
@@ -273,6 +281,7 @@ async function main() {
             await page.setViewportSize({ width, height: 844 });
             for (const route of ROUTES) {
               const label = [prefix || "root", scheme, width, route.id].join("/");
+              console.log("R2-C BEGIN " + label);
               await verifyRoute(page, base, route, width, scheme, screenshots, label);
               scenarios += 1;
               if (scenarios % 10 === 0)
