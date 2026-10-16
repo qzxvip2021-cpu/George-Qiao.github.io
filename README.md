@@ -28,7 +28,7 @@ The simulation project links to its public source-code repository. V4 and ARC ar
 - Select the most important projects and add accurate case studies, screenshots, and results
 - Supply an approved portrait and current resume before adding a portrait or resume download
 
-The 29 unreferenced image, resume, and icon-font assets inherited unchanged from the original portfolio template were removed from the active V2 file tree after an asset-reference and Git blob comparison. The cleanup preserves the current site icon, approved Thunder V2 photographs, and test screenshots. Earlier public commits and the still-deployed V1 branch may continue to expose the old files; this is not a Git-history purge. The former template project data and contact-card configuration were also removed to avoid attributing another person's work or contact details to George.
+The 29 unreferenced image, resume, and icon-font assets inherited unchanged from the original portfolio template were removed from the active V2 file tree after an asset-reference and Git blob comparison. The cleanup preserves the current site icon, approved Thunder V2 photographs, and test screenshots. Earlier public Git commits may continue to expose those original files even after V2 is deployed; this cleanup does not rewrite Git history. The former template project data and contact-card configuration were also removed to avoid attributing another person's work or contact details to George.
 
 ## Verification
 
