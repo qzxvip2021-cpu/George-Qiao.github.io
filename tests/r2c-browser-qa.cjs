@@ -108,16 +108,22 @@ async function verifyRoute(page, base, route, width, scheme, screenshots, label)
     label + ": horizontal overflow " + JSON.stringify(dimensions),
   );
   if (route.id === "thunder") {
-    const images = await page.locator("img").evaluateAll((nodes) =>
-      nodes.map((img) => ({
+    const images = page.locator("img");
+    assert.equal(await images.count(), 2, label + ": approved photograph count");
+    for (let i = 0; i < 2; i += 1) {
+      const image = images.nth(i);
+      // These approved photos intentionally use loading="lazy". Trigger loading
+      // by scrolling before waiting for decode, rather than treating offscreen
+      // images as failed HTTP requests.
+      await image.scrollIntoViewIfNeeded();
+      await image.evaluate((img) => img.decode());
+      const state = await image.evaluate((img) => ({
         complete: img.complete,
         width: img.naturalWidth,
         alt: img.getAttribute("alt"),
-      })),
-    );
-    assert.equal(images.length, 2, label + ": approved photograph count");
-    for (const img of images) {
-      assert.ok(img.complete && img.width > 0 && img.alt, label + ": photo loaded with alt");
+      }));
+      assert.ok(state.complete && state.width > 0 && state.alt,
+        label + ": approved photo decoded with alt");
     }
   }
   if (route.id === "v4") {
@@ -269,6 +275,8 @@ async function main() {
               const label = [prefix || "root", scheme, width, route.id].join("/");
               await verifyRoute(page, base, route, width, scheme, screenshots, label);
               scenarios += 1;
+              if (scenarios % 10 === 0)
+                console.log("R2-C progress: " + scenarios + "/80 scenarios completed");
             }
           }
           await testLinkJourney(page, base);
