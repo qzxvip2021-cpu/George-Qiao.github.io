@@ -3,7 +3,7 @@ name: R2-C Browser QA (test-only)
 on:
   pull_request:
     types: [opened, synchronize, reopened]
-    branches: [v2/integration]
+    branches: [v2/integration, main]
     paths:
       - index.html
       - 'assets/**'
