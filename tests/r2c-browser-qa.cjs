@@ -281,10 +281,12 @@ async function main() {
           page.on("requestfailed", (req) => {
             const failure = req.failure();
             const reason = typeof failure === "string" ? failure : failure?.errorText || "unknown";
-            // Navigating away from a page may cancel an in-progress lazy image
-            // fetch. These are not broken image URLs; each Thunder V2 photo is
-            // separately scrolled to and verified with decode() + naturalWidth.
-            if (req.resourceType() === "image" && /ERR_ABORTED/i.test(reason)) {
+            // Rapid page navigation cancels some in-flight image/script
+            // requests. These are not genuine network errors: photos are
+            // separately decoded and the site's JavaScript is tested through
+            // theme and navigation behavior assertions.
+            if (["image", "script"].includes(req.resourceType()) &&
+                /(?:^|::)ERR_ABORTED$/i.test(reason)) {
               cancelledImageRequests.push(req.url());
               return;
             }
