@@ -263,6 +263,7 @@ async function main() {
     browser = await chromium.launch({ headless: true, args: ["--no-sandbox"] });
     const screenshots = [];
     const errors = [];
+    const cancelledImageRequests = [];
     let scenarios = 0;
     for (const prefix of ["", SUBPATH]) {
       const base = origin + prefix + "/";
@@ -277,7 +278,18 @@ async function main() {
           page.on("console", (msg) => {
             if (msg.type() === "error") errors.push("console: " + msg.text());
           });
-          page.on("requestfailed", (req) => errors.push("request failed: " + req.url()));
+          page.on("requestfailed", (req) => {
+            const failure = req.failure();
+            const reason = typeof failure === "string" ? failure : failure?.errorText || "unknown";
+            // Navigating away from a page may cancel an in-progress lazy image
+            // fetch. These are not broken image URLs; each Thunder V2 photo is
+            // separately scrolled to and verified with decode() + naturalWidth.
+            if (req.resourceType() === "image" && /ERR_ABORTED/i.test(reason)) {
+              cancelledImageRequests.push(req.url());
+              return;
+            }
+            errors.push("request failed: " + reason + " " + req.url());
+          });
           page.on("response", (res) => {
             if (res.url().startsWith(origin) && res.status() >= 400)
               errors.push("HTTP " + res.status() + " " + res.url());
@@ -320,6 +332,7 @@ async function main() {
       images: "two approved Thunder V2 photographs load",
       screenshots: screenshots.length,
       errors: errors.length,
+      cancelledImageRequests: cancelledImageRequests.length,
     }, null, 2));
   } finally {
     if (browser) await browser.close();
