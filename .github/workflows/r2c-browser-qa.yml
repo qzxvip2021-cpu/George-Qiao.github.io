@@ -5,6 +5,7 @@ on:
     types: [opened, synchronize, reopened]
     branches: [v2/integration, main]
     paths:
+      - _config.yml
       - index.html
       - 'assets/**'
       - 'projects/**'
@@ -44,3 +45,37 @@ jobs:
           path: qa-artifacts/r2c/
           if-no-files-found: ignore
           retention-days: 7
+
+  pages-surface-qa:
+    name: Jekyll output excludes internal QA/docs (build-only)
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    steps:
+      - name: Checkout PR merge candidate
+        uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - name: Build GitHub Pages output (no deployment)
+        uses: actions/jekyll-build-pages@v1
+        with:
+          source: ./
+          destination: ./_site
+      - name: Verify public pages kept and internal directories excluded
+        shell: bash
+        run: |
+          set -euo pipefail
+          for file in \
+            _site/index.html \
+            _site/projects/v4-flight-computer/index.html \
+            _site/projects/thunder-v2-hpr-flight/index.html \
+            _site/projects/thunder-v2-flight-evidence/index.html \
+            _site/assets/css/style.css \
+            _site/assets/js/script.js \
+            _site/assets/projects/thunder-v2/thunder-v2-nose-cone.jpg \
+            _site/assets/projects/thunder-v2/launch-event-team.jpg; do
+            test -f "$file" || { echo "::error::Missing public file: $file"; exit 1; }
+          done
+          for path in _site/tests _site/docs _site/projects/_template; do
+            test ! -e "$path" || { echo "::error::Internal material in output: $path"; exit 1; }
+          done
+          echo "PASS: public pages/assets retained; QA and authoring files excluded"
