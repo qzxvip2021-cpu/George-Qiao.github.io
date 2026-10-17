@@ -1,0 +1,4 @@
+# Source-only project material must remain in Git but not be published by GitHub Pages.
+exclude:
+  - docs/
+  - tests/
