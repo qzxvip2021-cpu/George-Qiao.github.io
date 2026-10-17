@@ -436,7 +436,7 @@ h3 {
 }
 .project-grid {
   display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
+  grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 20px;
 }
 .project-card {
@@ -483,6 +483,23 @@ h3 {
 }
 .course-art {
   background: linear-gradient(130deg, var(--diagram-fill), var(--surface));
+}
+.thunder-art {
+  background:
+    radial-gradient(ellipse at 50% 57%, rgba(142, 120, 243, 0.13), transparent 63%),
+    var(--diagram-fill);
+}
+.thunder-art svg .rocket-outline {
+  stroke-width: 2.4;
+  opacity: 0.87;
+}
+.thunder-art svg .rocket-detail {
+  stroke-width: 1.4;
+  opacity: 0.48;
+}
+.thunder-art svg .rocket-trail {
+  stroke-dasharray: 4 8;
+  opacity: 0.42;
 }
 .course-lines {
   display: grid;
@@ -890,20 +907,4 @@ h3 {
   border: 1px dashed var(--accent);
   border-radius: 50%;
   opacity: 0.3;
-}
-@media (min-width: 761px) and (max-width: 1000px) {
-  .project-grid {
-    grid-template-columns: 1fr 1fr;
-  }
-  .project-card:last-child {
-    grid-column: 1/-1;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-  }
-  .project-card:last-child .project-art {
-    height: 100%;
-    min-height: 235px;
-    border-bottom: 0;
-    border-right: 1px solid var(--border);
-  }
 }
