@@ -104,6 +104,30 @@ async function verifyRoute(page, base, route, width, scheme, screenshots, label)
   } else {
     assert.ok(!/noindex/i.test(robots || ""), label + ": public page indexable");
   }
+  if (route.id === "home") {
+    const cards = page.locator("#projects .project-card");
+    assert.equal(await cards.count(), 4, label + ": four featured projects");
+    assert.deepEqual(await cards.locator("h3").allInnerTexts(), [
+      "V4 Flight Computer",
+      "Thunder V2",
+      "Rocket Flight Solver",
+      "ARC Competition",
+    ], label + ": evidence-first project order");
+    const columns = await page.locator("#projects .project-grid").evaluate((grid) =>
+      getComputedStyle(grid).gridTemplateColumns.trim().split(/\s+/).length);
+    assert.equal(columns, width <= 760 ? 1 : 2, label + ": project grid columns");
+    assert.equal(
+      await cards.nth(1).getByRole("link", { name: "Explore Thunder V2 case study" })
+        .getAttribute("href"),
+      "./projects/thunder-v2-hpr-flight/index.html",
+      label + ": Thunder V2 case study destination",
+    );
+    assert.equal(
+      await cards.nth(3).getByRole("link", { name: /View official results/ }).count(),
+      1,
+      label + ": ARC official-results link",
+    );
+  }
   const dimensions = await page.evaluate(() => ({
     scroll: document.documentElement.scrollWidth,
     viewport: window.innerWidth,
@@ -171,6 +195,13 @@ async function testLinkJourney(page, base) {
   await page.goto(base, { waitUntil: "load" });
   await page.getByRole("link", { name: "Read V4 case study" }).click();
   samePath(page.url(), base + "projects/v4-flight-computer/index.html");
+  await page.getByRole("link", { name: "Back to projects" }).click();
+  samePath(page.url(), base + "index.html#projects");
+
+  await page.goto(base, { waitUntil: "load" });
+  await page.locator("#projects")
+    .getByRole("link", { name: "Explore Thunder V2 case study" }).click();
+  samePath(page.url(), base + "projects/thunder-v2-hpr-flight/index.html");
   await page.getByRole("link", { name: "Back to projects" }).click();
   samePath(page.url(), base + "index.html#projects");
 
