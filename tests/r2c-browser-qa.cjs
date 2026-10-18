@@ -166,6 +166,18 @@ async function verifyRoute(page, base, route, width, scheme, screenshots, label)
   if (route.id === "v4") {
     assert.equal(await page.getByText("PROJECT IMAGE PENDING REVIEW").count(), 0);
     assert.ok((await page.locator("body").innerText()).includes("V4 has not flown"));
+    assert.equal(await page.locator(".v4-source-evidence").count(), 1,
+      label + ": V4 source verification snapshot");
+    assert.equal(await page.locator(".v4-source-facts > div").count(), 4,
+      label + ": V4 source audit facts");
+    assert.equal(await page.locator(".v4-pin-map > div").count(), 4,
+      label + ": AUX GPIO pin identity rows");
+    assert.equal(await page.locator("#pcb-design img").count(), 0,
+      label + ": no unapproved V4 engineering images");
+    const sourceColumns = await page.locator(".v4-source-facts").evaluate((grid) =>
+      getComputedStyle(grid).gridTemplateColumns.trim().split(/\s+/).length);
+    assert.equal(sourceColumns, width <= 760 ? 1 : 2,
+      label + ": source facts responsive columns");
   }
   if (route.id === "evidence") {
     assert.equal(await page.locator('[data-readout="peak-altitude"]').count(), 1);
