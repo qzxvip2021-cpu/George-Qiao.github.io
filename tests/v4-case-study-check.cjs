@@ -93,7 +93,7 @@ const approvedImages = [
   "../../assets/projects/v4/v4_reva_pcb_source_preview.png",
   "../../assets/projects/v4/v4_reva_stackup_source_diagram.png",
 ];
-assert.equal((html.match(/<img\\b/gi) || []).length, 2,
+assert.equal((html.match(/<img\b/gi) || []).length, 2,
   "Exactly two individually approved original V4 evidence PNGs");
 for (const ref of approvedImages) {
   assert.ok(html.includes('src="' + ref + '"'), "Missing approved image " + ref);
@@ -105,7 +105,7 @@ assert.match(html, /not a native KiCad screenshot/);
 assert.match(html, /neither physical measurement nor\s+manufacturer-approved fabrication stackup/);
 assert.ok(!html.includes("v4_reva_aux_gpio_net_audit.png"),
   "Deferred AUX GPIO graphic is not approved");
-assert.match(css, /\\.v4-engineering-figure/);
+assert.match(css, /\.v4-engineering-figure/);
 assert.ok(!/PROJECT IMAGE PENDING REVIEW|pending-media|No approved PCB render or hardware photo supplied/.test(html), "Published V4 must not show an unapproved image placeholder");
 assert.match(home, /href="\.\/projects\/v4-flight-computer\/index\.html"/);
 assert.ok(!html.includes("flight-proven"), "Unsupported flight-proven claim");
