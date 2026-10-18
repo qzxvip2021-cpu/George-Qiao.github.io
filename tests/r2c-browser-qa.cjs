@@ -12,6 +12,9 @@ const http = require("node:http");
 const path = require("node:path");
 const { chromium } = require("playwright");
 
+// Keep the Thunder V2 narrative and evidence constraints part of PR browser QA.
+require("./hpr-flight-case-study-check.cjs");
+
 const ROOT = path.resolve(__dirname, "..");
 const ARTIFACTS = path.resolve(process.env.R2C_QA_ARTIFACT_DIR || "qa-artifacts/r2c");
 const SUBPATH = "/George-Qiao.github.io";
@@ -137,6 +140,18 @@ async function verifyRoute(page, base, route, width, scheme, screenshots, label)
     label + ": horizontal overflow " + JSON.stringify(dimensions),
   );
   if (route.id === "thunder") {
+    assert.equal(await page.locator("#overview .overview-photo img").count(), 1,
+      label + ": nose-cone photograph foregrounded in overview");
+    assert.equal(await page.locator("#overview .hpr-contribution-list li").count(), 4,
+      label + ": four reported engineering contribution areas");
+    assert.equal(await page.locator("#configuration img").count(), 0,
+      label + ": no duplicate physical image in configuration");
+    assert.equal(await page.locator("#flight-preparation-launch .launch-photo img").count(), 1,
+      label + ": preserved approved event-context photo");
+    const overviewColumns = await page.locator("#overview .hpr-overview-feature").evaluate((grid) =>
+      getComputedStyle(grid).gridTemplateColumns.trim().split(/\s+/).length);
+    assert.equal(overviewColumns, width <= 1100 ? 1 : 2,
+      label + ": responsive physical artifact / reported-role layout");
     const images = page.locator("img");
     assert.equal(await images.count(), 2, label + ": approved photograph count");
     for (let i = 0; i < 2; i += 1) {
