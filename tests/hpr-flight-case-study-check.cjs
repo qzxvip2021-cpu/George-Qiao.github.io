@@ -77,7 +77,22 @@ assert.match(overview, /motor selection and delay adjustment/);
 assert.match(overview, /parachute and\s+recovery-system configuration/);
 assert.match(overview, /launch-day preparation and field launch\s+operations/);
 assert.match(overview, /post-flight recovery inspection and analysis of the\s+available flight-data summary/);
-assert.match(overview, /do not imply sole ownership of all project work/);
+assert.match(overview, /does not imply sole\s+ownership of all project work/);
+assert.match(overview, /class="hpr-overview-feature"/);
+assert.match(overview, /class="hpr-contribution-list"/);
+assert.match(overview, /User-reported contributions/);
+assert.equal((overview.match(/<li>/g) || []).length, 4, "Exactly four reported contribution areas");
+assert.match(overview, /class="hpr-objective-note panel"/);
+assert.match(overview, /Inferred design objectives/);
+assert.ok(!/objective-grid/.test(overview), "Redundant inferred-objective cards should be removed");
+const photoInOverview = overview.indexOf("thunder-v2-nose-cone.jpg");
+const roleInOverview = overview.indexOf("My Role &amp; Contributions");
+assert.ok(photoInOverview >= 0 && photoInOverview < roleInOverview,
+  "Physical nose cone must precede the contribution details");
+assert.ok(!section("configuration").includes("thunder-v2-nose-cone.jpg"),
+  "Do not duplicate the approved nose photo in configuration");
+assert.match(section("configuration"), /Existing photograph/);
+assert.match(section("configuration"), /Artifact located/);
 assert.match(section("configuration"), /I contributed to Thunder V2's structural design and CAD/);
 assert.match(section("configuration"), /does not establish materials, print parameters, exact\s+as-flown mass or dimensions, or structural-test results/);
 assert.match(section("motor-recovery"), /My participation included motor selection/);
@@ -108,7 +123,7 @@ assert.match(html, /prediction-accuracy calculation is made/);
 assert.match(html, /Video-confirmed but anomalous\s+ejection and descent fields are not used to establish actual flight events/);
 assert.match(section("recovery-observations"), /their event classification is unresolved/);
 assert.match(
-  section("configuration"),
+  section("overview"),
   /src="\.\.\/\.\.\/assets\/projects\/thunder-v2\/thunder-v2-nose-cone\.jpg"[\s\S]*alt="Black Thunder V2 nose cone displayed indoors\."[\s\S]*width="900"[\s\S]*height="1600"[\s\S]*Physical nose cone for Thunder V2\./,
 );
 assert.match(
@@ -132,7 +147,15 @@ assert.match(section("results"), /href="\.\.\/thunder-v2-flight-evidence\/index\
 assert.equal((html.match(/<section class="case-section"/g) || []).length, 8);
 assert.match(css, /\.result-card/);
 assert.match(css, /\.project-photo img/);
-assert.match(css, /\.configuration-photo img/);
+assert.match(css, /\.overview-photo img/);
+assert.match(css, /\.hpr-overview-feature/);
+assert.match(css, /\.hpr-contribution-list/);
+assert.match(section("flight-preparation-launch"), /This event-context photograph does not independently document/);
+assert.ok(
+  section("flight-preparation-launch").indexOf("launch-event-team.jpg") <
+    section("flight-preparation-launch").indexOf('class="preparation-grid"'),
+  "Context photo must appear before flight-setup evidence grids"
+);
 assert.match(css, /@media \(max-width: 760px\)/);
 
 console.log(
