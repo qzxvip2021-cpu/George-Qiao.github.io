@@ -172,8 +172,35 @@ async function verifyRoute(page, base, route, width, scheme, screenshots, label)
       label + ": V4 source audit facts");
     assert.equal(await page.locator(".v4-pin-map > div").count(), 4,
       label + ": AUX GPIO pin identity rows");
-    assert.equal(await page.locator("#pcb-design img").count(), 0,
-      label + ": no unapproved V4 engineering images");
+    const approvedEvidenceImages = page.locator("#pcb-design .v4-engineering-figure img");
+    assert.equal(await approvedEvidenceImages.count(), 2,
+      label + ": exactly two authorized V4 evidence images");
+    const expectedSizes = [[1440, 2560], [1870, 1190]];
+    for (let i = 0; i < expectedSizes.length; i += 1) {
+      const image = approvedEvidenceImages.nth(i);
+      await image.scrollIntoViewIfNeeded({ timeout: 15000 });
+      await image.evaluate((img) => Promise.race([
+        img.decode(),
+        new Promise((_, reject) => setTimeout(() =>
+          reject(new Error("V4 evidence image decode exceeded 12s")), 12000)),
+      ]));
+      const state = await image.evaluate((img) => ({
+        complete: img.complete,
+        width: img.naturalWidth,
+        height: img.naturalHeight,
+        alt: img.getAttribute("alt"),
+      }));
+      assert.ok(state.complete && state.alt,
+        label + ": authorized V4 evidence decoded with alt text");
+      assert.deepEqual([state.width, state.height], expectedSizes[i],
+        label + ": exact approved V4 image dimensions");
+    }
+    const afterImages = await page.evaluate(() => ({
+      scroll: document.documentElement.scrollWidth,
+      viewport: window.innerWidth,
+    }));
+    assert.ok(afterImages.scroll <= afterImages.viewport + 1,
+      label + ": no V4 image horizontal overflow");
     const sourceColumns = await page.locator(".v4-source-facts").evaluate((grid) =>
       getComputedStyle(grid).gridTemplateColumns.trim().split(/\s+/).length);
     assert.equal(sourceColumns, width <= 760 ? 1 : 2,
