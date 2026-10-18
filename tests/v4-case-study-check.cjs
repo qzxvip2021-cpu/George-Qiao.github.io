@@ -77,6 +77,35 @@ assert.match(html, /does not establish all rendered copper or aperture extents/)
 assert.match(html, /USB4105-GF-A-120/);
 assert.match(html, /USB4940-00-A/);
 assert.match(html, /CONCEPTUAL SYSTEM DIAGRAM/);
+assert.match(html, /Rev A evidence snapshot/);
+assert.match(html, /Nine source sheets matched the saved Rev A manifest/);
+assert.match(html, /29 of 29 manifest-listed package entries matched/);
+assert.match(html, /13 findings: eight solder-mask bridges and five footprint mismatches/);
+assert.match(html, /Connector pad 1/);
+assert.match(html, /Pad 3 → U1 pad 35/);
+assert.match(html, /Pad 4 → U1 pad 36/);
+assert.match(html, /AUX_GP23/);
+assert.match(html, /AUX_GP24/);
+assert.match(html, /No assembled\s+hardware operation has been demonstrated/);
+assert.match(css, /\.v4-source-facts/);
+assert.match(css, /\.v4-pin-map/);
+const approvedImages = [
+  "../../assets/projects/v4/v4_reva_pcb_source_preview.png",
+  "../../assets/projects/v4/v4_reva_stackup_source_diagram.png",
+];
+assert.equal((html.match(/<img\b/gi) || []).length, 2,
+  "Exactly two individually approved original V4 evidence PNGs");
+for (const ref of approvedImages) {
+  assert.ok(html.includes('src="' + ref + '"'), "Missing approved image " + ref);
+  assert.ok(html.includes('href="' + ref + '"'), "Missing full-resolution image link " + ref);
+}
+assert.match(html, /Source-derived KiCad geometry preview/);
+assert.match(html, /filled copper zones are not\s+depicted/);
+assert.match(html, /not a native KiCad screenshot/);
+assert.match(html, /neither physical measurement nor\s+manufacturer-approved fabrication stackup/);
+assert.ok(!html.includes("v4_reva_aux_gpio_net_audit.png"),
+  "Deferred AUX GPIO graphic is not approved");
+assert.match(css, /\.v4-engineering-figure/);
 assert.ok(!/PROJECT IMAGE PENDING REVIEW|pending-media|No approved PCB render or hardware photo supplied/.test(html), "Published V4 must not show an unapproved image placeholder");
 assert.match(home, /href="\.\/projects\/v4-flight-computer\/index\.html"/);
 assert.ok(!html.includes("flight-proven"), "Unsupported flight-proven claim");

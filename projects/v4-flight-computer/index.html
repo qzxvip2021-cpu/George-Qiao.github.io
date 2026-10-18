@@ -209,6 +209,26 @@
                 ground-reference layers sit alongside a low-speed digital layer and
                 a power-distribution layer between the outer copper layers.
               </p>
+              <figure class="v4-engineering-figure panel" id="v4-reva-pcb-figure">
+                <div class="v4-figure-heading">
+                  <span>FIGURE 01 / PCB SOURCE GEOMETRY</span>
+                  <span>Rev A · 2026-10-02</span>
+                </div>
+                <a class="v4-figure-image-link"
+                   href="../../assets/projects/v4/v4_reva_pcb_source_preview.png"
+                   target="_blank" rel="noopener noreferrer"
+                   aria-label="Open full-resolution Rev A PCB source geometry image in a new tab">
+                  <img src="../../assets/projects/v4/v4_reva_pcb_source_preview.png"
+                       alt="Front F.Cu and mirrored back B.Cu views of the 50 by 160 mm Rev A PCB, showing source-defined traces, pads, and silkscreen without filled copper zones."
+                       width="1440" height="2560" loading="lazy" decoding="async" />
+                </a>
+                <figcaption>
+                  <strong>Rev A PCB layout — front and mirrored back.</strong>
+                  Source-derived KiCad geometry preview; filled copper zones are not
+                  depicted. This is a CAD inspection view, not a native KiCad screenshot,
+                  fabricated-board photograph, or manufacturing CAM approval.
+                </figcaption>
+              </figure>
               <ol class="layer-stack panel" aria-label="Six-layer PCB stack">
                 <li><span>L1</span><strong>F.Cu</strong><small>Components and routing</small></li>
                 <li><span>L2</span><strong>GND Reference</strong><small>In1.Cu</small></li>
@@ -217,14 +237,64 @@
                 <li><span>L5</span><strong>Power Distribution</strong><small>In4.Cu</small></li>
                 <li><span>L6</span><strong>B.Cu</strong><small>Components and routing</small></li>
               </ol>
+              <figure class="v4-engineering-figure panel" id="v4-reva-stackup-figure">
+                <div class="v4-figure-heading">
+                  <span>FIGURE 02 / DESIGN STACKUP</span>
+                  <span>Rev A · nominal values</span>
+                </div>
+                <a class="v4-figure-image-link"
+                   href="../../assets/projects/v4/v4_reva_stackup_source_diagram.png"
+                   target="_blank" rel="noopener noreferrer"
+                   aria-label="Open full-resolution Rev A six-layer stackup image in a new tab">
+                  <img src="../../assets/projects/v4/v4_reva_stackup_source_diagram.png"
+                       alt="Nominal six-layer Rev A PCB stackup showing top signal, ground, low-speed digital, ground, power distribution, and bottom signal with source-file dielectric specifications."
+                       width="1870" height="1190" loading="lazy" decoding="async" />
+                </a>
+                <figcaption>
+                  <strong>Six-layer PCB stackup — design-file specification.</strong>
+                  Layer assignments and nominal materials and thicknesses are transcribed
+                  from the Rev A source. This is neither physical measurement nor
+                  manufacturer-approved fabrication stackup or controlled-impedance sign-off.
+                </figcaption>
+              </figure>
+              <div class="v4-source-evidence panel" aria-label="Rev A design source verification">
+                <div class="v4-source-heading">
+                  <div>
+                    <span class="evidence-label verified">Read-only design-source audit</span>
+                    <h3>Rev A evidence snapshot</h3>
+                  </div>
+                  <span class="v4-source-date">2026-10-02 · CAD evidence</span>
+                </div>
+                <dl class="v4-source-facts">
+                  <div><dt>PCB geometry</dt><dd>50 × 160 mm · six copper layers</dd></div>
+                  <div><dt>Schematic hierarchy</dt><dd>Nine source sheets matched the saved Rev A manifest</dd></div>
+                  <div><dt>Archive integrity</dt><dd>29 of 29 manifest-listed package entries matched</dd></div>
+                  <div><dt>Stored DRC report</dt><dd>13 findings: eight solder-mask bridges and five footprint mismatches</dd></div>
+                </dl>
+                <p class="v4-source-warning">
+                  These are file and design-source checks, not manufacturing approval or
+                  hardware test results. The stored DRC is not clean; fresh KiCad checks
+                  and physical validation remain outstanding.
+                </p>
+              </div>
               <div class="decision-list">
                 <div>
                   <h3>Interface identity follows function</h3>
                   <p>
-                    The current four-pin expansion connector is documented as 3.3 V
-                    AUX GPIO on GP23/GP24, not a display or I²C subsystem. A legacy
-                    reference designator remains, which is why labels must be checked
-                    against current electrical intent.
+                    The connector retains the historical J_DISPLAY1 reference and
+                    SDA/SCL symbol pin names. Current Rev A source nets instead
+                    identify a 3.3 V AUX GPIO interface on GP23/GP24, not a verified
+                    display or I²C subsystem.
+                  </p>
+                  <dl class="v4-pin-map" aria-label="J_DISPLAY1 source net mapping">
+                    <div><dt>Connector pad 1</dt><dd>GND</dd></div>
+                    <div><dt>Connector pad 2</dt><dd>3V3_MAIN</dd></div>
+                    <div><dt>Pad 3 → U1 pad 35</dt><dd>AUX_GP23</dd></div>
+                    <div><dt>Pad 4 → U1 pad 36</dt><dd>AUX_GP24</dd></div>
+                  </dl>
+                  <p class="v4-pin-note">
+                    Schematic and PCB identities were cross-checked. No assembled
+                    hardware operation has been demonstrated by these source records.
                   </p>
                 </div>
                 <div>
