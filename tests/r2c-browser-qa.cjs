@@ -12,6 +12,9 @@ const http = require("node:http");
 const path = require("node:path");
 const { chromium } = require("playwright");
 
+// Keep the Thunder V2 narrative and evidence constraints part of PR browser QA.
+require("./hpr-flight-case-study-check.cjs");
+
 const ROOT = path.resolve(__dirname, "..");
 const ARTIFACTS = path.resolve(process.env.R2C_QA_ARTIFACT_DIR || "qa-artifacts/r2c");
 const SUBPATH = "/George-Qiao.github.io";
