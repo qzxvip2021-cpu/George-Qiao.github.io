@@ -226,12 +226,12 @@ async function verifyRoute(page, base, route, width, scheme, screenshots, label)
     assert.equal(await featured.count(), 1, label + ": one direct instrument shortcut");
     assert.equal(await featured.getAttribute("href"), "#instrument-readout",
       label + ": summary jumps to instrument table");
-    assert.match(await featured.innerText(), /2,329\\s*ft/,
+    assert.match(await featured.innerText(), /2,329\s*ft/,
       label + ": featured readout is an instrument display value");
     assert.equal(await page.locator("#evidence-overview .evidence-key-item").count(), 4,
       label + ": four compact evidence classes");
     const evidenceColumns = await page.locator("#evidence-overview .evidence-key").evaluate((grid) =>
-      getComputedStyle(grid).gridTemplateColumns.trim().split(/\\s+/).length);
+      getComputedStyle(grid).gridTemplateColumns.trim().split(/\s+/).length);
     assert.equal(evidenceColumns, width <= 760 ? 1 : 2,
       label + ": responsive evidence-class grid");
     assert.equal(await page.locator('[data-readout="peak-altitude"]').count(), 1);
