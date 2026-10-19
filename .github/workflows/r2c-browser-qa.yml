@@ -10,6 +10,7 @@ on:
       - 'assets/**'
       - 'projects/**'
       - tests/r2c-browser-qa.cjs
+      - tests/flight-data-presentation-check.cjs
       - .github/workflows/r2c-browser-qa.yml
 
 permissions:
@@ -29,6 +30,8 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: "22"
+      - name: Verify Flight Evidence values and saved simulation warnings
+        run: node tests/flight-data-presentation-check.cjs
       - name: Install test-only Playwright
         run: npm install --no-save --no-package-lock playwright@1.55.0
       - name: Install Chromium for Playwright

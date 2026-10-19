@@ -92,6 +92,16 @@
           </a>
         </header>
 
+        <a class="flight-featured-readout panel" href="#instrument-readout"
+           aria-label="Jump to all ten AltimeterTwo instrument readouts">
+          <div class="flight-featured-copy">
+            <span class="evidence-label video-confirmed">Video-confirmed instrument readout</span>
+            <strong>2,329 <span>ft</span></strong>
+            <p>AltimeterTwo displayed peak altitude. Instrument accuracy and specific launch linkage remain unverified.</p>
+          </div>
+          <span class="flight-featured-action">View all 10 readouts <span aria-hidden="true">↗</span></span>
+        </a>
+
         <dl class="case-facts panel" aria-label="Evidence summary">
           <div><dt>Readout source</dt><dd>AltimeterTwo original display video</dd></div>
           <div><dt>Displayed fields</dt><dd>10 summary readouts</dd></div>
@@ -105,31 +115,31 @@
               <p class="eyebrow">01 / Evidence map</p>
               <h2 id="evidence-overview-title">Evidence Overview</h2>
               <p>
-                This page presents four evidence classes without treating them as
-                interchangeable. The data cards report approved values exactly as
-                supplied; they do not create a measured curve, a reconstructed event
-                timeline, or a validated simulation-to-flight comparison.
+                The evidence classes below distinguish the instrument display, saved
+                simulations, a user-reported setup, and unresolved flight details.
+                None provides a measured time series or validates a model-to-flight
+                comparison.
               </p>
-              <div class="evidence-key" role="list" aria-label="Evidence classes">
-                <div class="panel" role="listitem">
+              <div class="evidence-key panel" role="list" aria-label="Evidence classes">
+                <div class="evidence-key-item" role="listitem">
                   <span class="evidence-label video-confirmed">Video-confirmed instrument readout</span>
                   <h3>Displayed summary</h3>
-                  <p>Confirms what the AltimeterTwo display showed in the original video, not measurement accuracy.</p>
+                  <p>Screen readouts only; physical accuracy is not established.</p>
                 </div>
-                <div class="panel" role="listitem">
+                <div class="evidence-key-item" role="listitem">
                   <span class="evidence-label simulated">Saved simulation result</span>
                   <h3>Model snapshot</h3>
-                  <p>Records a saved OpenRocket output, not a verified preflight prediction or an as-flown match.</p>
+                  <p>Saved output; not an approved preflight prediction.</p>
                 </div>
-                <div class="panel" role="listitem">
+                <div class="evidence-key-item" role="listitem">
                   <span class="evidence-label reported">User-reported configuration</span>
                   <h3>Flight setup account</h3>
-                  <p>Preserves reported motor, delay, parachute, and JLCR details without claiming original setup evidence.</p>
+                  <p>Reported propulsion and recovery configuration.</p>
                 </div>
-                <div class="panel" role="listitem">
+                <div class="evidence-key-item" role="listitem">
                   <span class="evidence-label unavailable">Unverified or unavailable evidence</span>
                   <h3>Open questions</h3>
-                  <p>Keeps accuracy, event identification, launch linkage, and recovery timing unresolved.</p>
+                  <p>Launch linkage, event timing, and recovery remain unresolved.</p>
                 </div>
               </div>
             </section>
@@ -214,6 +224,10 @@
                     <div><dt>Simulation total mass</dt><dd>1.081 kg</dd></div>
                     <div><dt>Simulated delay</dt><dd>14 s</dd></div>
                   </dl>
+                  <div class="snapshot-warning" role="note">
+                    <strong>Saved simulation warning · HighSpeedDeployment</strong>
+                    <span>Simulated recovery deployment speed: 69.7 ft/s</span>
+                  </div>
                   <p class="snapshot-status">Not a Verified Preflight Prediction</p>
                 </article>
                 <article class="snapshot-card panel">
@@ -225,9 +239,17 @@
                     <div><dt>Simulation total mass</dt><dd>1.068 kg</dd></div>
                     <div><dt>Simulated delay</dt><dd>14 s</dd></div>
                   </dl>
+                  <div class="snapshot-warning" role="note">
+                    <strong>Saved simulation warning · HighSpeedDeployment</strong>
+                    <span>Simulated recovery deployment speed: 69.8 ft/s</span>
+                  </div>
                   <p class="snapshot-status">Not a Verified Preflight Prediction</p>
                 </article>
               </div>
+              <p class="snapshot-warning-boundary">
+                These warnings are stored OpenRocket simulation outputs. They do not
+                establish that high-speed recovery deployment occurred during the actual flight.
+              </p>
               <div class="case-evidence panel evidence-boundary">
                 <strong>Comparison boundary</strong>
                 <p>

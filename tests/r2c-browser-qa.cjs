@@ -222,9 +222,33 @@ async function verifyRoute(page, base, route, width, scheme, screenshots, label)
       label + ": source facts responsive columns");
   }
   if (route.id === "evidence") {
+    const featured = page.locator("a.flight-featured-readout");
+    assert.equal(await featured.count(), 1, label + ": one direct instrument shortcut");
+    assert.equal(await featured.getAttribute("href"), "#instrument-readout",
+      label + ": summary jumps to instrument table");
+    assert.match(await featured.innerText(), /2,329\s*ft/,
+      label + ": featured readout is an instrument display value");
+    assert.equal(await page.locator("#evidence-overview .evidence-key-item").count(), 4,
+      label + ": four compact evidence classes");
+    const evidenceColumns = await page.locator("#evidence-overview .evidence-key").evaluate((grid) =>
+      getComputedStyle(grid).gridTemplateColumns.trim().split(/\s+/).length);
+    assert.equal(evidenceColumns, width <= 760 ? 1 : 2,
+      label + ": responsive evidence-class grid");
     assert.equal(await page.locator('[data-readout="peak-altitude"]').count(), 1);
     assert.equal(await page.locator(".readout-card").count(), 10);
-    assert.equal(await page.locator(".snapshot-card").count(), 2);
+    assert.equal(await page.locator(".readout-card.is-anomalous").count(), 3,
+      label + ": instrument anomalies remain identified");
+    const snapshots = page.locator(".snapshot-card");
+    assert.equal(await snapshots.count(), 2);
+    const savedSpeeds = ["69.7 ft/s", "69.8 ft/s"];
+    for (let i = 0; i < savedSpeeds.length; i += 1) {
+      const warning = snapshots.nth(i).locator(".snapshot-warning");
+      assert.equal(await warning.count(), 1, label + ": saved simulation warning " + i);
+      assert.match(await warning.innerText(), /HighSpeedDeployment/,
+        label + ": OpenRocket warning identity " + i);
+      assert.ok((await warning.innerText()).includes(savedSpeeds[i]),
+        label + ": warning speed belongs to matching saved simulation " + i);
+    }
   }
   if ((width === 1440 && scheme === "light") ||
       (width === 390 && scheme === "dark")) {
