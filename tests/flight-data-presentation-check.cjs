@@ -29,6 +29,14 @@ assert.match(html, /name="robots" content="noindex, nofollow"/);
 assert.match(html, /Linked from Thunder V2 case study · noindex/);
 assert.match(html, /href="\.\.\/thunder-v2-hpr-flight\/index\.html"/);
 assert.match(html, /Thunder V2 — Flight Evidence &amp; Simulation Snapshots/);
+assert.match(html, /class="flight-featured-readout panel" href="#instrument-readout"/);
+assert.ok(
+  html.indexOf('class="flight-featured-readout panel"') < html.indexOf('id="evidence-overview"'),
+  "Direct readout link must precede the evidence overview",
+);
+assert.match(html, /Instrument accuracy and specific launch linkage remain unverified/);
+assert.equal((html.match(/class="evidence-key-item" role="listitem"/g) || []).length, 4,
+  "Four compact evidence-class entries required");
 
 const sections = [
   ["evidence-overview", "Evidence Overview"],
@@ -77,8 +85,13 @@ const readouts = [
 for (const [name, label, value, unit] of readouts) {
   const content = card(name);
   assert.ok(content.includes(label), `Missing readout label: ${label}`);
-  assert.ok(content.includes(`<strong>${value}</strong><span>${unit}</span>`), `Missing readout value: ${label}`);
+  const matches = content.match(/<dd><strong>[^<]+<\/strong><span>[^<]+<\/span><\/dd>/g) || [];
+  assert.deepEqual(matches, [`<dd><strong>${value}</strong><span>${unit}</span></dd>`],
+    `Exactly one exact numerical readout required for: ${label}`);
 }
+const displayedIds = all(/data-readout="([^"]+)"/g);
+assert.deepEqual(displayedIds, readouts.map(([name]) => name),
+  "Readout identities, order, and count must stay unchanged");
 assert.equal((html.match(/class="readout-card panel/g) || []).length, 10);
 assert.equal((html.match(/class="readout-card panel is-anomalous"/g) || []).length, 3);
 
@@ -98,6 +111,33 @@ assert.match(html, /2,328\.08 ft/);
 assert.match(html, /1\.068 kg/);
 assert.equal((html.match(/<dd>14 s<\/dd>/g) || []).length, 2);
 assert.equal((html.match(/Not a Verified Preflight Prediction/g) || []).length, 2);
+const snapshotCards = all(/<article class="snapshot-card panel">([\s\S]*?)<\/article>/g);
+assert.equal(snapshotCards.length, 2, "Exactly two saved snapshots");
+const snapshots = [
+  { label: "雷霆V2.ork", altitude: "2,322.55 ft", mass: "1.081 kg", warningSpeed: "69.7 ft/s" },
+  { label: "雷霆V2(1).ork", altitude: "2,328.08 ft", mass: "1.068 kg", warningSpeed: "69.8 ft/s" },
+];
+for (let i = 0; i < snapshots.length; i += 1) {
+  const saved = snapshots[i];
+  const content = snapshotCards[i];
+  assert.ok(content.includes(`<h3>${saved.label}</h3>`), `Snapshot label mismatch: ${i}`);
+  assert.ok(content.includes("H219T Simulation 4"), `Simulation identity mismatch: ${i}`);
+  for (const [label, value] of [
+    ["Saved altitude", saved.altitude],
+    ["Simulation total mass", saved.mass],
+    ["Simulated delay", "14 s"],
+  ]) {
+    assert.ok(content.includes(`<div><dt>${label}</dt><dd>${value}</dd></div>`),
+      `Wrong saved ${label}: ${saved.label}`);
+  }
+  assert.equal((content.match(/class="snapshot-warning"/g) || []).length, 1,
+    `One OpenRocket warning per snapshot: ${saved.label}`);
+  assert.ok(content.includes("Saved simulation warning · HighSpeedDeployment"),
+    `Missing warning identity: ${saved.label}`);
+  assert.ok(content.includes(`Simulated recovery deployment speed: ${saved.warningSpeed}`),
+    `Warning speed belongs to wrong simulation: ${saved.label}`);
+}
+assert.match(html, /do not\s+establish that high-speed recovery deployment occurred during the actual flight/);
 assert.match(html, /saved models are not identical configurations/i);
 assert.match(html, /confirmed preflight version is unknown/);
 assert.match(html, /no accuracy, error percentage, or\s+simulation-to-flight delta is calculated/);
@@ -123,6 +163,9 @@ assert.match(hprPage, /href="\.\.\/thunder-v2-flight-evidence\/index\.html"/);
 assert.equal((html.match(/<section class="case-section"/g) || []).length, 6);
 assert.match(css, /\.readout-grid/);
 assert.match(css, /\.is-anomalous/);
+assert.match(css, /\.flight-featured-readout/);
+assert.match(css, /\.evidence-key-item/);
+assert.match(css, /\.snapshot-warning/);
 assert.match(css, /@media \(max-width: 760px\)/);
 
 console.log(
